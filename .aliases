@@ -1,0 +1,21 @@
+# General convenience aliases
+alias ..='cd ..'
+alias q='logout'
+alias opn='open .'
+alias rm='rm -irv'
+alias getip='ipconfig getifaddr en0'
+
+# Copy to clipboard commands
+alias cwd='pwd | pbcopy'
+alias cip='getip | pbcopy'
+
+# Use NeoVim if available
+if [ command -v nvim >/dev/null 2>&1 ]; then
+    alias vi='nvim'
+    alias vim='nvim'
+fi
+
+# Postgres commands
+alias psql_start='postgres -D ~/psqldata'
+alias pqsl_start_log='pg_ctl -D ~/psqldata -l logfile start'
+
