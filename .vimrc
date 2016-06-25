@@ -143,8 +143,8 @@ set guifont=Source\ Code\ Pro\ for\ Powerline
 " Specific Configurations
 " ----------------------------------------------------------------------------
 " (Local config)
-if filereadable(".vimrc.local")
-  source .vimrc.local
+if !empty(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
 endif
 
 " ----------------------------------------------------------------------------
