@@ -9,13 +9,11 @@ alias getip='ipconfig getifaddr en0'
 alias cwd='pwd | pbcopy'
 alias cip='getip | pbcopy'
 
-# Use NeoVim if available
-if [ command -v nvim >/dev/null 2>&1 ]; then
-    alias vi='nvim'
-    alias vim='nvim'
-fi
-
 # Postgres commands
 alias psql_start='postgres -D ~/psqldata'
 alias pqsl_start_log='pg_ctl -D ~/psqldata -l logfile start'
+
+# Alias commands depending on installed prerequisites
+command -v nvim >/dev/null 2>&1 && alias vi='nvim' && alias vim='nvim'
+command -v highlight >/dev/null 2>&1 && alias cat='highlight -O xterm256 --style=zenburn --failsafe'
 
