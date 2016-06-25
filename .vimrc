@@ -31,7 +31,6 @@ set mouse=a
 " ----------------------------------------------------------------------------
 " Text Formatting
 " ----------------------------------------------------------------------------
-set paste
 set smarttab               " Expand tabs to spaces
 set autoindent             " Automatically indent new lines
 set formatoptions+=n       " Support for numbered/bullet lists
