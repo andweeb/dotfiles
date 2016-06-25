@@ -26,18 +26,16 @@ set nolazyredraw           " No lazy redraw
 set nostartofline          " Don't jump to the start of line when scrolling
 set relativenumber         " Relative numbers pl0x
 set laststatus=2           " Always display the status line
+set mouse=a
 
 " ----------------------------------------------------------------------------
 " Text Formatting
 " ----------------------------------------------------------------------------
+set paste
+set smarttab               " Expand tabs to spaces
 set autoindent             " Automatically indent new lines
-set softtabstop=4          " Yep, four
-set shiftwidth=4           " ..
-set tabstop=4
-set nopaste
-set expandtab              " Expand tabs to spaces
-set nosmarttab             " Bye tabs
 set formatoptions+=n       " Support for numbered/bullet lists
+set ts=4 sw=4 expandtab    " 4-space tabstops & 4-space shiftwidth (indent)
 
 " ----------------------------------------------------------------------------
 " Backups
