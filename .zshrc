@@ -25,20 +25,15 @@ ZSH_THEME="+"
 # ZSH Plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Overview: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview#node-js
 plugins=(git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting go golang node npm brew extract)
-eval $(thefuck --alias)
 
 # Add .bash_profile exports and aliases to zshrc
-[[ -e ~/.profile ]] && emulate sh -c 'source ~/.bash_profile'
+[[ -e ~/.bash_profile ]] && emulate sh -c 'source ~/.bash_profile'
 
 # ZSH Configs
 DISABLE_AUTO_UPDATE=true
 DISABLE_AUTO_TITLE=true
 COMPLETION_WAITING_DOTS=true
 NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-# Source some stuff
-source $ZSH/oh-my-zsh.sh
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 setopt noincappendhistory
 setopt nosharehistory
@@ -51,4 +46,11 @@ chrome() { open $1 -a Google\ Chrome }
 # Open applications given some argument(s)
 atom() { open -a atom $*; }
 sublime() { open -a sublime\ text $*; }
+
+# External plugin setup scripts
+eval $(thefuck --alias)                                     # thefuck
+source $ZSH/oh-my-zsh.sh                                    # oh-my-zsh
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"    # gruvbox color palette
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh                      # fzf
+export FZF_COMPLETION_TRIGGER='>>'
 
