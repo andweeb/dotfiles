@@ -21,12 +21,13 @@ set ch=1                   " Command line height
 set ruler                  " Always show cursor position
 set number                 " Line numbers
 set hlsearch               " Highlight all search matches
+set incsearch              " Search as you type
 set backspace=2            " Allow backspacing over everything in insert mode
 set nolazyredraw           " No lazy redraw
 set nostartofline          " Don't jump to the start of line when scrolling
 set relativenumber         " Relative numbers pl0x
 set laststatus=2           " Always display the status line
-set mouse=a
+set mouse=a                " Enable mouse support
 
 " ----------------------------------------------------------------------------
 " Text Formatting
@@ -57,6 +58,9 @@ map <Space>h :noh<CR>
 
 " Print working directory
 map <Space>pwd :echo expand('%:p')<CR>
+
+" Use CtrlP mapping for fzf
+map <C-P> :FZF<ENTER>
 
 " No arrow keys :)
 map <up> <nop>
@@ -150,11 +154,12 @@ endif
 " Plugins (Vundle)
 " ----------------------------------------------------------------------------
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/local/opt/fzf
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " (Add-on plugins)
-Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'Shougo/vimproc.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
