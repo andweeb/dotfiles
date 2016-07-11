@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 # Functions to install various software packages
 
+alreadyExists () {
+    if [ -e "$1" ]; then
+        printf "\033[38;5;11m$1 already exists! Skipping a step... \033[0m\n"
+        return 0
+    else
+        return 1
+    fi
+}
+
 alreadyInstalled () {
     command -v $1 >/dev/null 2>&1 && return 0 || return 1
 }
@@ -8,6 +17,16 @@ alreadyInstalled () {
 checkInstallStatus () {
     alreadyInstalled $1 && printf "\033[38;5;82m$1 successfully installed! \033[0m\n" ||
         (printf "\033[38;5;196m$1 failed to install! \033[0m\n" && exit 1)
+}
+
+InstallVundle () {
+    printf "\033[38;5;227mInstalling Vundle...\033[0m\n"
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+}
+
+InstallVimPlugins () {
+    printf "\033[38;5;227mInstalling vim plugins through Vundle... (ignore the vim errors)\033[0m\n"
+    vim +PluginInstall +qall
 }
 
 InstallBrew () {
