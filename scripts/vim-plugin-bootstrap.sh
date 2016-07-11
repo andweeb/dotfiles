@@ -32,7 +32,17 @@ CompileYCM () {
     fi
 }
 
-InitVimFolders() {
+InitGruvbox () {
+    printf "\033[38;5;227mAdding gruvbox colorscheme to ~/.vim/colors...\033[0m\n"
+    mkdir -p ~/.vim/colors
+    if [ ! -f ~/.vim/bundle/gruvbox/colors/gruvbox.vim ]; then
+        printf "\033[38;5;196mThe gruvbox vim plugin was not installed! Ensure that the appropriate vim plugins are installed. \033[0m\n" && exit 1
+    else
+        cp ~/.vim/bundle/gruvbox/colors/gruvbox.vim ~/.vim/colors/
+    fi
+}
+
+InitVimFolders () {
     # Initialize backup folders
     printf "\033[38;5;227mInitializing vim backup directories...\033[0m\n"
     mkdir -p ~/.vim/backup//
@@ -40,29 +50,42 @@ InitVimFolders() {
     mkdir -p ~/.vim/undo//
 
     # Add gruvbox colorscheme
-    printf "\033[38;5;227mAdding gruvbox colorscheme to ~/.vim/colors...\033[0m\n"
-    mkdir -p ~/.vim/colors
-    cp ~/.vim/bundle/gruvbox/colors/gruvbox.vim ~/.vim/colors/
+    alreadyExists ~/.vim/colors/gruvbox.vim || InitGruvbox
 }
 
-if [ ! -f ~/.vimrc ]; then
+InitVim () {
     # Install Vundle, symlink the vimrc, and install the vim plugins
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    ln -s ../vimrc ~/.vimrc
-    vim +PluginInstall +qall
+    alreadyExists ~/.vim/bundle/Vundle.vim || InstallVundle
+    InstallVimPlugins
     InitVimFolders
+}
 
+ConfirmYCMInstall () {
     # Compile only after confirmation
     printf "\033[38;5;215mWe're about to compile YouCompleteMe.\033[0m\n"
     printf "\033[38;5;215m- Make sure to look at the docs @ https://github.com/Valloric/YouCompleteMe\033[0m\n"
-    printf "\033[38;5;215m- We will install & update Go/Node/TypeScript and comile YCM with only those mentioned completion engines.\033[0m\n"
+    printf "\033[38;5;215m- We will install & update Go/Node/TypeScript and compile YCM with only those mentioned completion engines.\033[0m\n"
     printf "\033[38;5;215m- You should probably do it manually to modify the completion engines, but this attempts to streamline the process with only those listed languages.\033[0m\n"
     read -p "Want to give it a shot? (y/n): " yn
     case $yn in
         [Yy]* ) CompileYCM; exit;;
         [Nn]* ) exit;;
     esac
+}
+
+# Check if .vimrc was properly installed
+if [ ! -f ~/.vimrc ]; then
+    printf "\033[38;5;196mLooks like you don't have a .vimrc in your home directory yet! \033[0m\n"
+    printf "\033[38;5;196mWe will be installing Vim plugins based on askwon's .vimrc, so run install.sh first.\033[0m\n"
 else
-    printf "\033[38;5;11mWhoa! Looks like there's already a .vimrc! \033[0m\n"
-    printf "\033[38;5;11mWe're about to symlink something onto it, so make sure you have it backed up, renamed, or removed.\033[0m\n"
+    printf "\033[38;5;11m* Ensure you have askwon's .vimrc symlinked to your home directory! * \033[0m\n\n"
+    printf "\033[38;5;11mWe're gonna attempt to do the following: \033[0m\n"
+    printf "\033[38;5;11m- Install Vundle and install all plugins listed in ~/.vimrc. \033[0m\n"
+    printf "\033[38;5;11m- Initialize vim backup directories and install the gruvbox colorscheme. \033[0m\n"
+    read -p "Continue? (y/n): " yn
+    case $yn in
+        [Yy]* ) InitVim && ConfirmYCMInstall; exit;;
+        [Nn]* ) exit;;
+    esac
 fi
+
