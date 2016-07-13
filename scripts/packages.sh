@@ -24,8 +24,16 @@ InstallVundle () {
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 }
 
+InstallVim () {
+    printf "\033[38;5;227mInstalling vim...\033[0m\n"
+    alreadyInstalled "pacapt" || InstallPacapt
+    sudo pacapt -S vim;
+    checkInstallStatus "vim"
+}
+
 InstallVimPlugins () {
     printf "\033[38;5;227mInstalling vim plugins through Vundle... (ignore the vim errors)\033[0m\n"
+    alreadyInstalled "vim" || InstallVim;
     vim +PluginInstall +qall
 }
 
