@@ -166,6 +166,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'unblevable/quick-scope'
 
 " (Mapping plugins)
 Plugin 'tpope/vim-surround'
