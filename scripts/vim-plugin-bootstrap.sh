@@ -53,11 +53,17 @@ InitVimFolders () {
     alreadyExists ~/.vim/colors/gruvbox.vim || InitGruvbox
 }
 
+InstallFonts () {
+    printf "\033[38;5;227mInstalling airline-compatible fonts...\033[0m\n"
+    git clone https://github.com/powerline/fonts.git && ./install.sh
+}
+
 InitVim () {
     # Install Vundle, symlink the vimrc, and install the vim plugins
     alreadyExists ~/.vim/bundle/Vundle.vim || InstallVundle
     InstallVimPlugins
     InitVimFolders
+    InstallFonts
 }
 
 ConfirmYCMInstall () {
