@@ -18,6 +18,7 @@
     required = true
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    s = "!f() { [[ $(git status --porcelain) ]] && ls -logrtd $(git status --porcelain | grep '^.[?M]' | sed 's/^.. //') | sed 's/^[^ ][^ ]*  *[^ ][^ ]* *[^ ][^ ]* //'; }; f"
+    s = "status"
+    st = "!f() { [[ $(git status --porcelain) ]] && ls -logrtd $(git status --porcelain | grep '^.[?M]' | sed 's/^.. //') | sed 's/^[^ ][^ ]*  *[^ ][^ ]* *[^ ][^ ]* //'; }; f"
 [push]
     default = simple
