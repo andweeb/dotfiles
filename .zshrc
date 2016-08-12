@@ -26,6 +26,11 @@ ZSH_THEME="+"
 # Overview: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview#node-js
 plugins=(git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting go golang node npm brew extract)
 
+# Start in tmux pl0x
+if [[ ! $TERM =~ screen ]]; then
+    exec tmux
+fi
+
 # Add .bash_profile exports and aliases to zshrc
 [[ -e ~/.bash_profile ]] && emulate sh -c 'source ~/.bash_profile'
 
