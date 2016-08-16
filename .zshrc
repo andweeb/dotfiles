@@ -1,5 +1,5 @@
 # Path to oh-my-zsh installation.
-export ZSH=/Users/askwon/.oh-my-zsh
+export ZSH=/Users/$USER/.oh-my-zsh
 export LANG=en_US.UTF-8
 
 # Paths
@@ -55,7 +55,7 @@ sublime() { open -a sublime\ text $*; }
 # External plugin setup scripts
 eval $(thefuck --alias)                                     # thefuck
 source $ZSH/oh-my-zsh.sh                                    # oh-my-zsh
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"    # gruvbox color palette
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"   # gruvbox color palette
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh                      # fzf
 export FZF_COMPLETION_TRIGGER='>>'
 

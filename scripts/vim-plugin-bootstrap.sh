@@ -13,7 +13,7 @@ CompileYCM () {
     sudo npm install -g typescript
 
     # - Cross fingers & pray to the heavens -
-    cd ~/.vim/bundle/YouCompleteMe && \
+    cd ~/.vim/plugged/YouCompleteMe && \
         ./install.py \
             --clang-completer \
             --gocode-completer \
@@ -35,10 +35,10 @@ CompileYCM () {
 InitGruvbox () {
     printf "\033[38;5;227mAdding gruvbox colorscheme to ~/.vim/colors...\033[0m\n"
     mkdir -p ~/.vim/colors
-    if [ ! -f ~/.vim/bundle/gruvbox/colors/gruvbox.vim ]; then
+    if [ ! -f ~/.vim/plugged/gruvbox/colors/gruvbox.vim ]; then
         printf "\033[38;5;196mThe gruvbox vim plugin was not installed! Ensure that the appropriate vim plugins are installed. \033[0m\n" && exit 1
     else
-        cp ~/.vim/bundle/gruvbox/colors/gruvbox.vim ~/.vim/colors/
+        cp ~/.vim/plugged/gruvbox/colors/gruvbox.vim ~/.vim/colors/
     fi
 }
 
@@ -59,8 +59,8 @@ InstallFonts () {
 }
 
 InitVim () {
-    # Install Vundle, symlink the vimrc, and install the vim plugins
-    alreadyExists ~/.vim/bundle/Vundle.vim || InstallVundle
+    # Install vim-plug, symlink the vimrc, and install the vim plugins
+    InstallVimPlug
     InstallVimPlugins
     InitVimFolders
     InstallFonts
@@ -86,7 +86,7 @@ if [ ! -f ~/.vimrc ]; then
 else
     printf "\033[38;5;11m* Ensure you have askwon's .vimrc symlinked to your home directory! * \033[0m\n\n"
     printf "\033[38;5;11mWe're gonna attempt to do the following: \033[0m\n"
-    printf "\033[38;5;11m- Install Vundle and install all plugins listed in ~/.vimrc. \033[0m\n"
+    printf "\033[38;5;11m- Install vim-plug and install all plugins listed in ~/.vimrc. \033[0m\n"
     printf "\033[38;5;11m- Initialize vim backup directories and install the gruvbox colorscheme. \033[0m\n"
     read -p "Continue? (y/n): " yn
     case $yn in

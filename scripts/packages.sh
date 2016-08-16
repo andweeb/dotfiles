@@ -19,9 +19,10 @@ checkInstallStatus () {
         (printf "\033[38;5;196m$1 failed to install! \033[0m\n" && exit 1)
 }
 
-InstallVundle () {
-    printf "\033[38;5;227mInstalling Vundle...\033[0m\n"
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+InstallVimPlug () {
+    printf "\033[38;5;227mInstalling vim-plug...\033[0m\n"
+    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
 InstallVim () {
@@ -32,9 +33,9 @@ InstallVim () {
 }
 
 InstallVimPlugins () {
-    printf "\033[38;5;227mInstalling vim plugins through Vundle... (ignore the vim errors)\033[0m\n"
+    printf "\033[38;5;227mInstalling vim plugins through vim-plug...\033[0m\n"
     alreadyInstalled "vim" || InstallVim;
-    vim +PluginInstall +qall
+    vim +PlugInstall +qall
 }
 
 InstallBrew () {

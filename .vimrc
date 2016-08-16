@@ -59,8 +59,8 @@ map <Space>h :noh<CR>
 " Print working directory
 map <Space>pwd :echo expand('%:p')<CR>
 
-" Use CtrlP mapping for fzf
-map <C-P> :FZF<ENTER>
+" Ctrl+T for fzf
+map <C-T> :FZF<ENTER>
 
 " No arrow keys :)
 map <up> <nop>
@@ -75,7 +75,7 @@ imap <right> <nop>
 " ----------------------------------------------------------------------------
 " YouCompleteMe
 " ----------------------------------------------------------------------------
-let ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_global_ycm_extra_conf=ycm_extra_conf
 let g:ycm_path_to_python_interpreter='/usr/local/bin/python'
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -149,39 +149,38 @@ set guifont=Source\ Code\ Pro\ for\ Powerline
 if !empty(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+au BufEnter,BufRead *.conf setf dosini
 
 " ----------------------------------------------------------------------------
-" Plugins (Vundle)
+" Plugins (vim-plug)
 " ----------------------------------------------------------------------------
-set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=/usr/local/opt/fzf
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " (Add-on plugins)
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'Shougo/vimproc.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-sleuth'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'Shougo/vimproc.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic'
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-sleuth'
 
 " (Mapping plugins)
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 
 " (Colorschemes)
-Plugin 'morhetz/gruvbox'
-Plugin 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'flazz/vim-colorschemes'
 
 " (Language syntax plugins)
-Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'nvim/'}
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'othree/javascript-libraries-syntax.vim'
+Plug 'fatih/vim-go'
+Plug 'nsf/gocode', {'rtp': 'nvim/'}
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
