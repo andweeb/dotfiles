@@ -67,5 +67,5 @@ eval $(thefuck --alias)                                     # thefuck
 source $ZSH/oh-my-zsh.sh                                    # oh-my-zsh
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"   # gruvbox color palette
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh                      # fzf
-export FZF_COMPLETION_TRIGGER='>>'
+export FZF_COMPLETION_TRIGGER=',,'
 
