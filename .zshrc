@@ -1,3 +1,6 @@
+# ----------------------------------------------------------------------------
+# Environment Variables
+# ----------------------------------------------------------------------------
 # Path to oh-my-zsh installation.
 export ZSH=/Users/$USER/.oh-my-zsh
 export LANG=en_US.UTF-8
@@ -20,10 +23,12 @@ export GOBIN=$HOME/go/bin
 export GOROOT=/usr/local/go
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
+# ----------------------------------------------------------------------------
+# Zsh Configurations
+# ----------------------------------------------------------------------------
 ZSH_THEME="+"
 
 # ZSH Plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Overview: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview#node-js
 plugins=(git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting go golang node npm brew extract)
 
 # Start in tmux pl0x
@@ -43,6 +48,9 @@ NVIM_TUI_ENABLE_TRUE_COLOR=1
 setopt noincappendhistory
 setopt nosharehistory
 
+# ----------------------------------------------------------------------------
+# Custom commands
+# ----------------------------------------------------------------------------
 # Lazy browser open commands
 firefox() { open $1 -a Firefox }
 ffdev() { open $1 -a FirefoxDeveloperEdition }
@@ -52,7 +60,9 @@ chrome() { open $1 -a Google\ Chrome }
 atom() { open -a atom $*; }
 sublime() { open -a sublime\ text $*; }
 
-# External plugin setup scripts
+# ----------------------------------------------------------------------------
+# External Plugin Scripts
+# ----------------------------------------------------------------------------
 eval $(thefuck --alias)                                     # thefuck
 source $ZSH/oh-my-zsh.sh                                    # oh-my-zsh
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"   # gruvbox color palette
