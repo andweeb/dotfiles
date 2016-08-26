@@ -31,4 +31,4 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     echo "LOL sorry ¯\_(ツ)_/¯"
 fi
 
-printf "Add \033[38;5;204mlet g:python_host_prog='/path/to/python3'\033[0m to your \e[4m.vimrc\n";
+printf "Add \033[38;5;204mlet g:python_host_prog='$(which python3)'\033[0m to your \e[4m.vimrc\n";

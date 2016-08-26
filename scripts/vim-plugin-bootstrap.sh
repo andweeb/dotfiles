@@ -60,7 +60,6 @@ InstallFonts () {
 
 InitVim () {
     # Install vim-plug, symlink the vimrc, and install the vim plugins
-    InstallVimPlug
     InstallVimPlugins
     InitVimFolders
     InstallFonts

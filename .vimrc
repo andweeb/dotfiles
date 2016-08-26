@@ -84,6 +84,10 @@ let g:ycm_allow_changing_updatetime=0
 let g:ycm_complete_in_comments=1
 let g:ycm_warning_symbol="▵"
 let g:ycm_error_symbol="✗"
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " ----------------------------------------------------------------------------
 " Language-specific configurations
@@ -110,6 +114,9 @@ au FileType go nmap <Leader>gs <Plug>(go-implements)
 
 " (Markdown)
 let g:instant_markdown_autostart=0
+
+" (Conf)
+au BufEnter,BufRead *.conf setf dosini
 
 " ----------------------------------------------------------------------------
 " Syntastic
@@ -149,38 +156,45 @@ set guifont=Source\ Code\ Pro\ for\ Powerline
 if !empty(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
-au BufEnter,BufRead *.conf setf dosini
+
+" (FZF)
+set rtp+=/usr/local/opt/fzf
 
 " ----------------------------------------------------------------------------
 " Plugins (vim-plug)
 " ----------------------------------------------------------------------------
-set rtp+=/usr/local/opt/fzf
-call plug#begin('~/.vim/plugged')
+if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autoload/plug.vim'))
+    call plug#begin('~/.vim/plugged')
 
-" (Add-on plugins)
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'Shougo/vimproc.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
-Plug 'Valloric/YouCompleteMe'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-sleuth'
+    " (Add-on plugins)
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'Shougo/vimproc.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'scrooloose/syntastic'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-sleuth'
 
-" (Mapping plugins)
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
+    " (Mapping plugins)
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-commentary'
 
-" (Colorschemes)
-Plug 'morhetz/gruvbox'
-Plug 'flazz/vim-colorschemes'
+    " (Colorschemes)
+    Plug 'morhetz/gruvbox'
+    Plug 'flazz/vim-colorschemes'
 
-" (Language syntax plugins)
-Plug 'fatih/vim-go'
-Plug 'nsf/gocode', {'rtp': 'nvim/'}
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'othree/javascript-libraries-syntax.vim'
+    " (Language syntax plugins)
+    Plug 'fatih/vim-go'
+    Plug 'nsf/gocode', {'rtp': 'nvim/'}
+    Plug 'pangloss/vim-javascript'
+    Plug 'mxw/vim-jsx'
+    Plug 'othree/javascript-libraries-syntax.vim'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'Quramy/tsuquyomi'
 
-call plug#end()
+    call plug#end()
+endif
+
 filetype plugin indent on

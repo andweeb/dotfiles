@@ -19,10 +19,23 @@ checkInstallStatus () {
         (printf "\033[38;5;196m$1 failed to install! \033[0m\n" && exit 1)
 }
 
-InstallVimPlug () {
-    printf "\033[38;5;227mInstalling vim-plug...\033[0m\n"
-    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+InstallVimPlugins () {
+    alreadyInstalled "vim" || InstallVim;
+    if [[ $(alreadyInstalled "nvim") -eq 0 ]]; then
+        printf "\033[38;5;227mInstalling vim-plug (nvim) & vim plugins...\033[0m\n"
+        curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        nvim +PlugInstall
+    else
+        read -p "Looks like nvim is not installed! Install regular vim-plug? (y/n):" yn
+        case $yn in
+            [Yy]* ) printf "\033[38;5;227mInstalling vim-plug & vim plugins...\033[0m\n"
+                curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+                https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                vim +PlugInstall +qall ;;
+            [Nn]* ) exit 1 ;;
+        esac
+    fi
 }
 
 InstallVim () {
@@ -30,12 +43,6 @@ InstallVim () {
     alreadyInstalled "pacapt" || InstallPacapt
     sudo pacapt -S vim;
     checkInstallStatus "vim"
-}
-
-InstallVimPlugins () {
-    printf "\033[38;5;227mInstalling vim plugins through vim-plug...\033[0m\n"
-    alreadyInstalled "vim" || InstallVim;
-    vim +PlugInstall +qall
 }
 
 InstallBrew () {
