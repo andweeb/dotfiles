@@ -1,7 +1,8 @@
 " ----------------------------------------------------------------------------
 " General
 " ----------------------------------------------------------------------------
-syntax on
+set ttyfast
+syntax enable
 filetype plugin indent on
 
 set encoding=utf-8         " Displayed encoding
@@ -190,6 +191,8 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'pangloss/vim-javascript'
     Plug 'mxw/vim-jsx'
     Plug 'othree/javascript-libraries-syntax.vim'
+    Plug 'othree/yajs.vim'
+    Plug 'editorconfig/editorconfig-vim'
     Plug 'leafgarland/typescript-vim'
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'Quramy/tsuquyomi'
