@@ -13,9 +13,9 @@
 [color]
     ui = always
 [color "status"]
-	added = green
-	changed = red
-	untracked = cyan
+    added = green
+    changed = red
+    untracked = cyan
 [color "diff"]
     meta = yellow bold
     commit = green
@@ -33,9 +33,11 @@
     smudge = git lfs smudge %f
     required = true
 [alias]
+    l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     s = "status"
     st = "!f() { [[ $(git status --porcelain) ]] && ls -logrtd $(git status --porcelain | grep '^.[?M]' | sed 's/^.. //') | sed 's/^[^ ][^ ]*  *[^ ][^ ]* *[^ ][^ ]* //'; }; f"
     dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4; }; f"
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 [push]
     default = simple
