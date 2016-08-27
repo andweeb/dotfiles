@@ -24,7 +24,7 @@ set number                 " Line numbers
 set hlsearch               " Highlight all search matches
 set incsearch              " Search as you type
 set backspace=2            " Allow backspacing over everything in insert mode
-set nolazyredraw           " No lazy redraw
+set lazyredraw             " Set lazy redraw
 set nostartofline          " Don't jump to the start of line when scrolling
 set relativenumber         " Relative numbers pl0x
 set laststatus=2           " Always display the status line
