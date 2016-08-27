@@ -54,6 +54,10 @@ let mapleader=","
 " Finish those sentences
 map ;; A;<esc>
 
+" Error location navigation
+map <leader>n :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
+map <leader>p :lprevious<CR>
+
 " Hide search highlighting
 map <Space>h :noh<CR>
 
