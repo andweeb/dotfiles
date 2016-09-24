@@ -30,3 +30,7 @@ do
     fi
 done
 
+read -p "Install vim plugins and compile YCM?" yn
+case $yn in
+    [Yy]* ) ./scripts/vim-plugin-bootstrap.sh ;;
+esac
