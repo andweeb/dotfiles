@@ -52,13 +52,26 @@ setopt nosharehistory
 # Custom commands
 # ----------------------------------------------------------------------------
 # Lazy browser open commands
-firefox() { open $1 -a Firefox }
-ffdev() { open $1 -a FirefoxDeveloperEdition }
-chrome() { open $1 -a Google\ Chrome }
+firefox() {
+    open $1 -a Firefox
+}
+firefox-dev() {
+    open $1 -a FirefoxDeveloperEdition
+}
+chrome() {
+    open $1 -a Google\ Chrome
+}
+chrome-security-disabled() {
+    open $1 -a Google\ Chrome --args --disable-web-security --user-data-dir
+}
 
 # Open applications given some argument(s)
-atom() { open -a atom $*; }
-sublime() { open -a sublime\ text $*; }
+atom() {
+    open -a atom $*;
+}
+sublime() {
+    open -a sublime\ text $*;
+}
 
 # ----------------------------------------------------------------------------
 # External Plugin Scripts
