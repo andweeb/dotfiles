@@ -129,8 +129,11 @@ au BufEnter,BufRead *.conf setf dosini
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
 let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_c_checkers = ['gcc', 'make']
+
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_warning_symbol = "▵"
 let g:syntastic_error_symbol = "✗"
