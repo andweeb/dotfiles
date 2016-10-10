@@ -77,6 +77,13 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
+imap cll console.log();<Esc>^f(a
+vmap cll yocll<Esc>p
+nmap cll yiwocll<Esc>p
+imap cld console.dir();<Esc>^f(a
+vmap cld yocld<Esc>p
+nmap cld yiwocld<Esc>p
+
 " ----------------------------------------------------------------------------
 " YouCompleteMe
 " ----------------------------------------------------------------------------
@@ -182,7 +189,6 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'Valloric/YouCompleteMe'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'tpope/vim-sleuth'
 
     " (Mapping plugins)
     Plug 'tpope/vim-surround'
