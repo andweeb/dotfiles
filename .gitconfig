@@ -9,7 +9,7 @@
 [credential]
     helper = osxkeychain
 [core]
-    editor = vim
+    editor = nvim
 [color]
     ui = always
 [color "status"]
@@ -37,7 +37,9 @@
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     s = "status"
     st = "!f() { [[ $(git status --porcelain) ]] && ls -logrtd $(git status --porcelain | grep '^.[?M]' | sed 's/^.. //') | sed 's/^[^ ][^ ]*  *[^ ][^ ]* *[^ ][^ ]* //'; }; f"
+    diffs = "diff --staged"
     dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4; }; f"
+    dsfs = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=4; }; f"
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 [push]
     default = simple
