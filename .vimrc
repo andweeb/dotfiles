@@ -29,6 +29,7 @@ set nostartofline          " Don't jump to the start of line when scrolling
 set relativenumber         " Relative numbers pl0x
 set laststatus=2           " Always display the status line
 set mouse=a                " Enable mouse support
+set cursorline
 
 " ----------------------------------------------------------------------------
 " Text Formatting
@@ -156,6 +157,13 @@ let g:gruvbox_contrast_dark="medium"
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
 colorscheme gruvbox
+
+" ----------------------------------------------------------------------------
+" Cursor line
+" ----------------------------------------------------------------------------
+highlight CursorLine ctermbg=236
+autocmd InsertEnter * highlight  CursorLine ctermbg=237
+autocmd InsertLeave * highlight  CursorLine ctermbg=236
 
 " ----------------------------------------------------------------------------
 " Airline

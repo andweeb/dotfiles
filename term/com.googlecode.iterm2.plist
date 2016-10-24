@@ -685,17 +685,19 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>865 547 445 77 0 0 1680 1050 </string>
+	<string>788 402 445 77 0 0 1680 1050 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>573 545 606 456 0 0 1680 1027 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>670 673 400 129 0 0 1680 1027 </string>
+	<string>853 673 400 129 0 0 1680 1027 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>492 321 700 622 0 0 1680 1050 </string>
+	<string>492 303 700 622 0 0 1680 1027 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>434 401 918 381 0 0 1680 1050 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>843 19 640 490 0 0 1680 1027 </string>
+	<string>843 4 836 1019 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>5 535 836 491 0 0 1680 1027 </string>
+	<string>843 19 640 491 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 10</key>
 	<string>341 206 640 381 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 11</key>
@@ -711,7 +713,7 @@
 	<key>NSWindow Frame iTerm Window 16</key>
 	<string>467 68 640 381 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>842 4 836 1019 0 0 1680 1027 </string>
+	<string>5 11 1669 1008 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>843 4 836 1019 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -1592,7 +1594,7 @@
 			<key>Use Canonical Parser</key>
 			<false/>
 			<key>Use Cursor Guide</key>
-			<true/>
+			<false/>
 			<key>Use HFS Plus Mapping</key>
 			<true/>
 			<key>Use Italic Font</key>
@@ -1693,11 +1695,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml</string>
+	<string>https://iterm2.com/appcasts/testing.xml?shard=50</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-07-17T01:55:16Z</date>
+	<date>2016-10-23T19:56:12Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
@@ -3469,7 +3471,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.1.4</string>
+	<string>3.0.11</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
