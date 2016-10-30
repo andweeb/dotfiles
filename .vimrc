@@ -12,6 +12,7 @@ set clipboard=unnamed      " Enable clipboard sharing
 " NeoVim
 " ----------------------------------------------------------------------------
 if has('nvim')
+    set termguicolors
     let g:python_host_prog='/usr/local/bin/python3'
 endif
 
@@ -120,10 +121,13 @@ let g:go_highlight_interfaces=1
 let g:go_highlight_operators=1
 let g:go_highlight_build_constraints=1
 let g:go_fmt_command="goimports"
-au FileType go nmap <leader>gr <Plug>(go-run)
+au FileType go nmap <leader>gf <Plug>(go-def)
+au FileType go nmap <Leader>gi <Plug>(go-info)
 au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gv <Plug>(go-def-vertical)
+au FileType go nmap <leader>gr <Plug>(go-run-tab)
 au FileType go nmap <Leader>gs <Plug>(go-implements)
+au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
+au FileType go nmap <leader>gdc <Plug>(go-doc)
 
 " (Markdown)
 let g:instant_markdown_autostart=0

@@ -18,9 +18,11 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export GEM_HOME=~/.gem
 export GEM_PATH=~/.gem
-export GOPATH=$HOME/go
-export GOBIN=$HOME/go/bin
+
+export GOPATH=$HOME/go:$HOME/Sites
 export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # ----------------------------------------------------------------------------
