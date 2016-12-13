@@ -21,7 +21,8 @@ export GEM_PATH=~/.gem
 
 export GOPATH=$HOME/go:$HOME/Sites
 export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin
+export GOBIN=/usr/local/go/bin
+export PATH=$PATH:$GOBIN
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
