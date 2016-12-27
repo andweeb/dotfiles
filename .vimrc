@@ -12,7 +12,6 @@ set clipboard=unnamed      " Enable clipboard sharing
 " NeoVim
 " ----------------------------------------------------------------------------
 if has('nvim')
-    set termguicolors
     let g:python_host_prog='/usr/local/bin/python3'
 endif
 
@@ -211,15 +210,20 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'flazz/vim-colorschemes'
 
     " (Language syntax plugins)
+    Plug 'editorconfig/editorconfig-vim'
+    " (Golang plugins)
     Plug 'fatih/vim-go'
     Plug 'nsf/gocode', {'rtp': 'nvim/'}
+    " (JavaScript plugins)
     Plug 'pangloss/vim-javascript'
     Plug 'mxw/vim-jsx'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'othree/yajs.vim'
-    Plug 'editorconfig/editorconfig-vim'
-    Plug 'leafgarland/typescript-vim'
+    " (GraphQL plugins)
+    Plug 'jparise/vim-graphql'
+    " (TypeScript plugins)
     Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
 
     call plug#end()
