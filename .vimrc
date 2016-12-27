@@ -30,7 +30,6 @@ set nostartofline          " Don't jump to the start of line when scrolling
 set relativenumber         " Relative numbers pl0x
 set laststatus=2           " Always display the status line
 set mouse=a                " Enable mouse support
-set cursorline
 
 " ----------------------------------------------------------------------------
 " Text Formatting
@@ -165,7 +164,8 @@ colorscheme gruvbox
 " ----------------------------------------------------------------------------
 " Cursor line
 " ----------------------------------------------------------------------------
-highlight CursorLine ctermbg=236
+set cursorline
+highlight CursorLine guibg=#2d2d2d
 autocmd InsertEnter * highlight  CursorLine ctermbg=237
 autocmd InsertLeave * highlight  CursorLine ctermbg=236
 
