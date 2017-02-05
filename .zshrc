@@ -11,28 +11,27 @@ export PATH=$PATH:~/.vimpkg/bin
 export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=/usr/local/sbin:$PATH
-
-# Add RVM to PATH for scripting and load RVM into a shell session *as a function*
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-export GEM_HOME=~/.gem
-export GEM_PATH=~/.gem
-
+# (Go)
 export GOPATH=$HOME/go:$HOME/Sites
 export GOROOT=/usr/local/go
 export GOBIN=/usr/local/go/bin
 export PATH=$PATH:$GOBIN
-
+# (Ruby)
+export GEM_HOME=~/.gem
+export GEM_PATH=~/.gem
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# (Android)
 export ANDROID_HOME=/usr/local/opt/android-sdk
+# (C#)
+export MONO_GAC_PREFIX="/usr/local"
+# (Rust)
+source $HOME/.cargo/env
 
 # ----------------------------------------------------------------------------
 # Zsh Configurations
 # ----------------------------------------------------------------------------
 ZSH_THEME="+"
-
-# ZSH Plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git colored-man colorize github jira vagrant virtualenv pip python brew osx zsh-syntax-highlighting go golang node npm brew extract)
 
 # Start in tmux pl0x
 if [[ ! $TERM =~ screen ]]; then
@@ -50,6 +49,36 @@ NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 setopt noincappendhistory
 setopt nosharehistory
+
+# ----------------------------------------------------------------------------
+# Zsh Plugins
+# ----------------------------------------------------------------------------
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/colored-man", from:oh-my-zsh
+zplug "plugins/colorize", from:oh-my-zsh
+zplug "plugins/github", from:oh-my-zsh
+zplug "plugins/jira", from:oh-my-zsh
+zplug "plugins/vagrant", from:oh-my-zsh
+zplug "plugins/virtualenv", from:oh-my-zsh
+zplug "plugins/pip", from:oh-my-zsh
+zplug "plugins/python", from:oh-my-zsh
+zplug "plugins/brew", from:oh-my-zsh
+zplug "plugins/osx", from:oh-my-zsh
+zplug "plugins/zsh-syntax-highlighting", from:oh-my-zsh
+zplug "plugins/go", from:oh-my-zsh
+zplug "plugins/golang", from:oh-my-zsh
+zplug "plugins/node", from:oh-my-zsh
+zplug "plugins/npm", from:oh-my-zsh
+zplug "plugins/brew", from:oh-my-zsh
+zplug "plugins/extract", from:oh-my-zsh
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "b4b4r07/zsh-vimode-visual", defer:3
+
+zplug load
 
 # ----------------------------------------------------------------------------
 # Custom commands
@@ -79,9 +108,12 @@ sublime() {
 # ----------------------------------------------------------------------------
 # External Plugin Scripts
 # ----------------------------------------------------------------------------
+
 eval $(thefuck --alias)                                     # thefuck
 source $ZSH/oh-my-zsh.sh                                    # oh-my-zsh
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"   # gruvbox color palette
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh                      # fzf
-export FZF_COMPLETION_TRIGGER=',,'
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"   # gruvbox colors
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh                      # fzf
+export FZF_TMUX=1
+export FZF_TMUX_HEIGHT='45%'
+export FZF_COMPLETION_TRIGGER=',,'
