@@ -10,8 +10,7 @@ alias cwd='pwd | pbcopy'
 alias cip='getip | pbcopy'
 
 # Postgres commands
-alias psql_start='postgres -D ~/psqldata'
-alias pqsl_start_log='pg_ctl -D ~/psqldata -l logfile start'
+alias psql_start='brew services start postgresql'
 
 # Alias commands depending on installed prerequisites
 command -v nvim >/dev/null 2>&1 && alias vi='nvim' && alias vim='nvim'
