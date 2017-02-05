@@ -52,21 +52,14 @@ set undodir=~/.vim/undo//
 " ----------------------------------------------------------------------------
 let mapleader=","
 
-" Finish those sentences
-map ;; A;<esc>
-
 " Error location navigation
 map <leader>n :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
 map <leader>p :lprevious<CR>
 
-" Hide search highlighting
+map ;; A;<esc>
 map <Space>h :noh<CR>
-
-" Print working directory
+map ,,<Tab> :FZF<ENTER>
 map <Space>pwd :echo expand('%:p')<CR>
-
-" Ctrl+T for fzf
-map <C-T> :FZF<ENTER>
 
 " No arrow keys :)
 map <up> <nop>
@@ -98,7 +91,7 @@ let g:ycm_complete_in_comments=1
 let g:ycm_warning_symbol="▵"
 let g:ycm_error_symbol="✗"
 if !exists("g:ycm_semantic_triggers")
-  let g:ycm_semantic_triggers = {}
+    let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 
@@ -186,6 +179,9 @@ endif
 " (FZF)
 set rtp+=/usr/local/opt/fzf
 
+" (Go)
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+
 " ----------------------------------------------------------------------------
 " Plugins (vim-plug)
 " ----------------------------------------------------------------------------
@@ -225,6 +221,8 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
+    " (Markdown plugins)
+    Plug 'suan/vim-instant-markdown'
 
     call plug#end()
 endif
