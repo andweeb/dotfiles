@@ -7,6 +7,7 @@ filetype plugin indent on
 
 set encoding=utf-8         " Displayed encoding
 set clipboard=unnamed      " Enable clipboard sharing
+set timeoutlen=200         " Set mapped sequence delay to 200ms
 
 " ----------------------------------------------------------------------------
 " NeoVim
@@ -55,7 +56,6 @@ let mapleader=","
 map <leader>n :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
 map <leader>p :lprevious<CR>
 
-map ;; A;<esc>
 map <Space>h :noh<CR>
 map ,,<Tab> :FZF<ENTER>
 map <Space>pwd :echo expand('%:p')<CR>
@@ -70,10 +70,10 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
-imap cll console.log();<Esc>^f(a
+imap cll console.log()<Esc>^f(a
 vmap cll yocll<Esc>p
 nmap cll yiwocll<Esc>p
-imap cld console.dir();<Esc>^f(a
+imap cld console.dir()<Esc>^f(a
 vmap cld yocld<Esc>p
 nmap cld yiwocld<Esc>p
 
