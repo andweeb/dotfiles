@@ -16,11 +16,6 @@ export GOPATH=$HOME/go:$HOME/Sites
 export GOROOT=/usr/local/go
 export GOBIN=/usr/local/go/bin
 export PATH=$PATH:$GOBIN
-# (Ruby)
-export GEM_HOME=~/.gem
-export GEM_PATH=~/.gem
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # (Android)
 export ANDROID_HOME=/usr/local/opt/android-sdk
 # (C#)
@@ -75,6 +70,7 @@ zplug "plugins/node", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/brew", from:oh-my-zsh
 zplug "plugins/extract", from:oh-my-zsh
+zplug "plugins/mix", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "b4b4r07/zsh-vimode-visual", defer:3
 
