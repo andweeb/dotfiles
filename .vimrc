@@ -5,16 +5,10 @@ set ttyfast
 syntax enable
 filetype plugin indent on
 
-set encoding=utf-8         " Displayed encoding
-set clipboard=unnamed      " Enable clipboard sharing
-set timeoutlen=200         " Set mapped sequence delay to 200ms
-
-" ----------------------------------------------------------------------------
-" NeoVim
-" ----------------------------------------------------------------------------
-if has('nvim')
-    let g:python_host_prog='/usr/local/bin/python3'
-endif
+set encoding=utf-8              " Displayed encoding
+set clipboard=unnamed           " Enable clipboard sharing
+set timeoutlen=200              " Set mapped sequence delay to 200ms
+set guicursor=a:hor20-Cursor    " Set cursor as underline
 
 " ----------------------------------------------------------------------------
 " Interface
@@ -40,9 +34,8 @@ set formatoptions+=n       " Support for numbered/bullet lists
 set ts=4 sw=4 expandtab    " 4-space tabstops & 4-space shiftwidth (indent)
 
 " ----------------------------------------------------------------------------
-" Backups
+" Backups (designated backup/swp folder)
 " ----------------------------------------------------------------------------
-" (designated backup/swp folder)
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
@@ -82,7 +75,7 @@ nmap cld yiwocld<Esc>p
 " ----------------------------------------------------------------------------
 let ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_global_ycm_extra_conf=ycm_extra_conf
-let g:ycm_path_to_python_interpreter='/usr/local/bin/python'
+let g:ycm_path_to_python_interpreter=system('printf $(which python)')
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_always_populate_location_list=1
 let g:ycm_allow_changing_updatetime=0
@@ -93,6 +86,16 @@ if !exists("g:ycm_semantic_triggers")
     let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+
+" ----------------------------------------------------------------------------
+" Conditional Paths
+" ----------------------------------------------------------------------------
+if has('nvim')
+    let g:python_host_prog=system('printf $(which python3)')
+endif
+if has('w3m')
+    let g:w3m#command=system('printf $(which w3m)')
+endif
 
 " ----------------------------------------------------------------------------
 " Language-specific configurations
@@ -154,7 +157,7 @@ let g:gruvbox_italicize_strings=1
 colorscheme gruvbox
 
 " ----------------------------------------------------------------------------
-" Cursor line
+" Cursor Line
 " ----------------------------------------------------------------------------
 set cursorline
 highlight CursorLine guibg=#2d2d2d
@@ -176,11 +179,8 @@ if !empty(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
 
-" (FZF)
-set rtp+=/usr/local/opt/fzf
-
-" (Go)
-set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+set rtp+=/usr/local/opt/fzf                             " (FZF)
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim    " (Go)
 
 " ----------------------------------------------------------------------------
 " Plugins (vim-plug)
@@ -196,6 +196,7 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'Valloric/YouCompleteMe'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'yuratomo/w3m.vim'
 
     " (Mapping plugins)
     Plug 'tpope/vim-surround'
@@ -207,6 +208,9 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
 
     " (Language syntax plugins)
     Plug 'editorconfig/editorconfig-vim'
+    " (Elixir plugins)
+    Plug 'elixir-lang/vim-elixir'
+    Plug 'slashmili/alchemist.vim'
     " (Golang plugins)
     Plug 'fatih/vim-go'
     Plug 'nsf/gocode', {'rtp': 'nvim/'}
