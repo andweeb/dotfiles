@@ -104,12 +104,18 @@ sublime() {
 # ----------------------------------------------------------------------------
 # External Plugin Scripts
 # ----------------------------------------------------------------------------
-
 eval $(thefuck --alias)                                     # thefuck
 source $ZSH/oh-my-zsh.sh                                    # oh-my-zsh
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"   # gruvbox colors
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh                      # fzf
+# Zsh Line Editor (vi-mode)
+bindkey -v
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+export KEYTIMEOUT=1
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_TMUX=1
 export FZF_TMUX_HEIGHT='45%'
 export FZF_COMPLETION_TRIGGER=',,'
