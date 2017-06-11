@@ -7,7 +7,7 @@ filetype plugin indent on
 
 set encoding=utf-8              " Displayed encoding
 set clipboard=unnamed           " Enable clipboard sharing
-set timeoutlen=200              " Set mapped sequence delay to 200ms
+set timeoutlen=300              " Set mapped sequence delay to 200ms
 set guicursor=a:hor20-Cursor    " Set cursor as underline
 
 " ----------------------------------------------------------------------------
@@ -88,7 +88,7 @@ endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " ----------------------------------------------------------------------------
-" Conditional Paths
+" Conditional path configurations
 " ----------------------------------------------------------------------------
 if has('nvim')
     let g:python_host_prog=system('printf $(which python3)')
@@ -96,56 +96,6 @@ endif
 if has('w3m')
     let g:w3m#command=system('printf $(which w3m)')
 endif
-
-" ----------------------------------------------------------------------------
-" Language-specific configurations
-" ----------------------------------------------------------------------------
-" (JavaScript)
-let javascript_enable_domhtmlcss=1                        "vim-javascript
-let b:javascript_fold=1                                   "vim-javascript-syntax
-let g:jsx_ext_required=0                                  "mxw/vim-jsx
-let g:used_javascript_libs='react,jquery,flux,underscore' "javascript-libraries-syntax
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
-" (Go)
-let g:go_highlight_functions=1
-let g:go_highlight_methods=1
-let g:go_highlight_structs=1
-let g:go_highlight_interfaces=1
-let g:go_highlight_operators=1
-let g:go_highlight_build_constraints=1
-let g:go_fmt_command="goimports"
-au FileType go nmap <leader>gf <Plug>(go-def)
-au FileType go nmap <Leader>gi <Plug>(go-info)
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gr <Plug>(go-run-tab)
-au FileType go nmap <Leader>gs <Plug>(go-implements)
-au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
-au FileType go nmap <leader>gdc <Plug>(go-doc)
-
-" (Markdown)
-let g:instant_markdown_autostart=0
-
-" (Conf)
-au BufEnter,BufRead *.conf setf dosini
-
-" ----------------------------------------------------------------------------
-" Syntastic
-" ----------------------------------------------------------------------------
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_c_checkers = ['gcc', 'make']
-
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_warning_symbol = "▵"
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_loc_list_height=2
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_wq=0
 
 " ----------------------------------------------------------------------------
 " Colorscheme & Styles
@@ -172,7 +122,49 @@ let g:airline_powerline_fonts=1
 set guifont=Source\ Code\ Pro\ for\ Powerline
 
 " ----------------------------------------------------------------------------
-" Specific Configurations
+" Language-specific configurations
+" ----------------------------------------------------------------------------
+" (JavaScript)
+let g:ale_sign_error = '×'                                " ale
+let g:ale_sign_warning = '△'
+let g:flow#autoclose=1                                    " vim-flow
+let javascript_enable_domhtmlcss=1                        " vim-javascript
+let g:javascript_plugin_flow=1
+let b:javascript_fold=1                                   " vim-javascript-syntax
+let g:jsx_ext_required=0                                  " mxw/vim-jsx
+let g:used_javascript_libs='                              " javascript-libraries-syntax
+            \ react,
+            \ jquery,
+            \ flux,
+            \ underscore,
+            \ chai'
+
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+
+" (Go)
+let g:go_highlight_functions=1
+let g:go_highlight_methods=1
+let g:go_highlight_structs=1
+let g:go_highlight_interfaces=1
+let g:go_highlight_operators=1
+let g:go_highlight_build_constraints=1
+let g:go_fmt_command="goimports"
+au FileType go nmap <leader>gf <Plug>(go-def)
+au FileType go nmap <Leader>gi <Plug>(go-info)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gr <Plug>(go-run-tab)
+au FileType go nmap <Leader>gs <Plug>(go-implements)
+au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
+au FileType go nmap <leader>gdc <Plug>(go-doc)
+
+" (Markdown)
+let g:instant_markdown_autostart=0
+
+" (Conf)
+au BufEnter,BufRead *.conf setf dosini
+
+" ----------------------------------------------------------------------------
+" Other Configurations
 " ----------------------------------------------------------------------------
 " (Local config)
 if !empty(glob("~/.vimrc.local"))
@@ -192,15 +184,17 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'Shougo/vimproc.vim'
     Plug 'tpope/vim-fugitive'
-    Plug 'scrooloose/syntastic'
     Plug 'Valloric/YouCompleteMe'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'yuratomo/w3m.vim'
+    Plug 'sbdchd/neoformat'
+    Plug 'romainl/vim-qf'
+    Plug 'w0rp/ale'
 
     " (Mapping plugins)
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-repeat'
 
     " (Colorschemes)
     Plug 'morhetz/gruvbox'
@@ -219,6 +213,7 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'mxw/vim-jsx'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'othree/yajs.vim'
+    Plug 'flowtype/vim-flow'
     " (GraphQL plugins)
     Plug 'jparise/vim-graphql'
     " (TypeScript plugins)
