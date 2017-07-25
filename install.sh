@@ -35,5 +35,5 @@ done
 
 read -p "$(clr_bold clr_white "Install vim plugins and compile YCM? (y/n) ")" yn
 case $yn in
-    [Yy]* ) ./scripts/vim-plugin-bootstrap.sh ;;
+    [Yy]* ) ../scripts/vim-plugin-bootstrap.sh ;;
 esac
