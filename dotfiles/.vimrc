@@ -86,6 +86,7 @@ if !exists("g:ycm_semantic_triggers")
     let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+let g:ycm_semantic_triggers['elm'] = ['.']
 
 " ----------------------------------------------------------------------------
 " Conditional path configurations
@@ -124,9 +125,16 @@ set guifont=Source\ Code\ Pro\ for\ Powerline
 " ----------------------------------------------------------------------------
 " Language-specific configurations
 " ----------------------------------------------------------------------------
+" (Elm)
+let g:elm_format_autosave = 1
+let g:neoformat_enabled_elm = ['elm-format']
+
 " (JavaScript)
 let g:ale_sign_error = '×'                                " ale
 let g:ale_sign_warning = '△'
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
 let g:flow#autoclose=1                                    " vim-flow
 let javascript_enable_domhtmlcss=1                        " vim-javascript
 let g:javascript_plugin_flow=1
@@ -202,6 +210,8 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
 
     " (Language syntax plugins)
     Plug 'editorconfig/editorconfig-vim'
+    " (Elm plugins)
+    Plug 'ElmCast/elm-vim'
     " (Elixir plugins)
     Plug 'elixir-lang/vim-elixir'
     Plug 'slashmili/alchemist.vim'
