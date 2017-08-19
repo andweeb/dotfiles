@@ -28,6 +28,3 @@ do
         clr_bold clr_red "Failed to symlink $filename! Do this manually instead."
     fi
 done
-
-read -p "$(clr_bold clr_white "Install vim plugins and compile YCM? [Y/n] ")" yn
-[ $yn == "Y" ] && $repo/scripts/vim-plugin-setup.sh
