@@ -2,7 +2,7 @@
 # Environment Variables
 # ----------------------------------------------------------------------------
 # Path to oh-my-zsh installation.
-export ZSH=/Users/$USER/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 export LANG=en_US.UTF-8
 
 # Paths
@@ -21,7 +21,7 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 # (C#)
 export MONO_GAC_PREFIX="/usr/local"
 # (Rust)
-source $HOME/.cargo/env
+export PATH=$HOME/.cargo/bin:$PATH
 
 # ----------------------------------------------------------------------------
 # Zsh Configurations
@@ -29,8 +29,11 @@ source $HOME/.cargo/env
 ZSH_THEME="+"
 
 # Start in tmux pl0x
-if [[ ! $TERM =~ screen ]]; then
-    exec tmux
+if ! [ -n "$TMUX" ]; then
+    command -v tmux >/dev/null 2>&1 &&
+    command -v reattach-to-user-namespace >/dev/null 2>&1 && {
+        exec tmux
+    }
 fi
 
 # Add .bash_profile exports and aliases to zshrc
@@ -48,65 +51,45 @@ setopt nosharehistory
 # ----------------------------------------------------------------------------
 # Zsh Plugins
 # ----------------------------------------------------------------------------
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
+command -v zplug >/dev/null 2>&1 && {
+    export ZPLUG_HOME=~/.zplug
+    source $ZPLUG_HOME/init.zsh
 
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/docker", from:oh-my-zsh
-zplug "plugins/colored-man", from:oh-my-zsh
-zplug "plugins/colorize", from:oh-my-zsh
-zplug "plugins/github", from:oh-my-zsh
-zplug "plugins/jira", from:oh-my-zsh
-zplug "plugins/vagrant", from:oh-my-zsh
-zplug "plugins/virtualenv", from:oh-my-zsh
-zplug "plugins/pip", from:oh-my-zsh
-zplug "plugins/python", from:oh-my-zsh
-zplug "plugins/brew", from:oh-my-zsh
-zplug "plugins/osx", from:oh-my-zsh
-zplug "plugins/zsh-syntax-highlighting", from:oh-my-zsh
-zplug "plugins/go", from:oh-my-zsh
-zplug "plugins/golang", from:oh-my-zsh
-zplug "plugins/node", from:oh-my-zsh
-zplug "plugins/npm", from:oh-my-zsh
-zplug "plugins/brew", from:oh-my-zsh
-zplug "plugins/extract", from:oh-my-zsh
-zplug "plugins/mix", from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "b4b4r07/zsh-vimode-visual", defer:3
+    zplug "plugins/git", from:oh-my-zsh
+    zplug "plugins/docker", from:oh-my-zsh
+    zplug "plugins/colored-man", from:oh-my-zsh
+    zplug "plugins/colorize", from:oh-my-zsh
+    zplug "plugins/github", from:oh-my-zsh
+    zplug "plugins/jira", from:oh-my-zsh
+    zplug "plugins/vagrant", from:oh-my-zsh
+    zplug "plugins/virtualenv", from:oh-my-zsh
+    zplug "plugins/pip", from:oh-my-zsh
+    zplug "plugins/python", from:oh-my-zsh
+    zplug "plugins/brew", from:oh-my-zsh
+    zplug "plugins/osx", from:oh-my-zsh
+    zplug "plugins/zsh-syntax-highlighting", from:oh-my-zsh
+    zplug "plugins/go", from:oh-my-zsh
+    zplug "plugins/golang", from:oh-my-zsh
+    zplug "plugins/node", from:oh-my-zsh
+    zplug "plugins/npm", from:oh-my-zsh
+    zplug "plugins/brew", from:oh-my-zsh
+    zplug "plugins/extract", from:oh-my-zsh
+    zplug "plugins/mix", from:oh-my-zsh
+    zplug "zsh-users/zsh-syntax-highlighting", defer:2
+    zplug "b4b4r07/zsh-vimode-visual", defer:3
 
-zplug load
-
-# ----------------------------------------------------------------------------
-# Custom commands
-# ----------------------------------------------------------------------------
-# Lazy browser open commands
-firefox() {
-    open $1 -a Firefox
-}
-firefox-dev() {
-    open $1 -a FirefoxDeveloperEdition
-}
-chrome() {
-    open $1 -a Google\ Chrome
-}
-chrome-security-disabled() {
-    open $1 -a Google\ Chrome --args --disable-web-security --user-data-dir
-}
-
-# Open applications given some argument(s)
-atom() {
-    open -a atom $*;
-}
-sublime() {
-    open -a sublime\ text $*;
+    zplug load
 }
 
 # ----------------------------------------------------------------------------
 # External Plugin Scripts
 # ----------------------------------------------------------------------------
-eval $(thefuck --alias)                                     # thefuck
-source $ZSH/oh-my-zsh.sh                                    # oh-my-zsh
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"   # gruvbox colors
+gruvboxsh=$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
+[[ -e "$gruvboxsh" ]] && source $gruvboxsh                  # gruvbox colors
+[[ -e "$ZSH/oh-my-zsh.sh" ]] && source $ZSH/oh-my-zsh.sh    # oh-my-zsh
+command -v thefuck >/dev/null 2>&1 && {                     # thefuck
+    eval $(thefuck --alias)
+}
 
 # Zsh Line Editor (vi-mode)
 bindkey -v

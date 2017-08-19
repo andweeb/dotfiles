@@ -101,11 +101,17 @@ endif
 " ----------------------------------------------------------------------------
 " Colorscheme & Styles
 " ----------------------------------------------------------------------------
-set background=dark
-let g:gruvbox_contrast_dark="medium"
-let g:gruvbox_italicize_comments=1
-let g:gruvbox_italicize_strings=1
-colorscheme gruvbox
+try
+    colorscheme gruvbox
+
+    set background=dark
+    let g:gruvbox_contrast_dark="medium"
+    let g:gruvbox_italicize_comments=1
+    let g:gruvbox_italicize_strings=1
+
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme default
+endtry
 
 " ----------------------------------------------------------------------------
 " Cursor Line
