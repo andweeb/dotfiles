@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Slight modification of oh-my-zsh's install script
-# Removes a snippet that automatically switches the shell to zsh after installation
+# - Avoid switching the shell to zsh after installation
+# - Avoid renaming pre-existing zshrc dotfile
 #
 # Original can be found here:
 # https://github.com/robbyrussell/oh-my-zsh/blob/d848c94804918138375041a9f800f401bec12068/tools/install.sh
@@ -72,13 +73,6 @@ main() {
     printf "Error: git clone of oh-my-zsh repo failed\n"
     exit 1
   }
-
-
-  printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
-  if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
-    printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\n";
-    mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
-  fi
 
   printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
   cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
