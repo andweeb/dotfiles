@@ -1,39 +1,33 @@
 #!/bin/bash
 
+repo=$(git rev-parse --show-toplevel)
+
 # Source dependencies
-chmod +x ./scripts/*
-. $(git rev-parse --show-toplevel)/scripts/lib/*
+chmod +x $repo/scripts/*
+chmod +x $repo/scripts/lib/*
+. $repo/scripts/lib/shared
+. $repo/scripts/lib/colors
 
-cd dotfiles
-
-for f in .*
+for f in $repo/dotfiles/.*
 do
-    if [[ ("$f" == ".") || ("$f" == "..") ]]; then
+    filename=${f##*/}
+    if [[ ("$filename" == ".") || ("$filename" == "..") ]]; then
         continue
     fi
 
-    target="$HOME/${f##*/}"
+    target="$HOME/$filename"
 
     if [ -f $target ]; then
-        read -p "$(clr_white "Move the pre-existing $f to a backup folder? (y/n) ")" yn
-        case $yn in
-            [Yy]* )
-                mv $target ../backups/${f:1}.bak
-                ;;
-            *)
-                continue
-                ;;
-        esac
+        read -p "$(clr_white "Move the pre-existing $filename to a backup folder? [Y/n] ")" yn
+        [ $yn == "Y" ] && mv $target $repo/backups/$filename.bak || continue
     fi
 
-    ln -s $(pwd)"/$f" $target
+    ln -s $f $target
 
     if [ $? -ne 0 ]; then
-        clr_bold clr_red "$f symlink failed! Do this manually instead."
+        clr_bold clr_red "Failed to symlink $filename! Do this manually instead."
     fi
 done
 
-read -p "$(clr_bold clr_white "Install vim plugins and compile YCM? (y/n) ")" yn
-case $yn in
-    [Yy]* ) ../scripts/vim-plugin-bootstrap.sh ;;
-esac
+read -p "$(clr_bold clr_white "Install vim plugins and compile YCM? [Y/n] ")" yn
+[ $yn == "Y" ] && $repo/scripts/vim-plugin-setup.sh
