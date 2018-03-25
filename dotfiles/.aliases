@@ -1,18 +1,24 @@
-# General convenience aliases
-alias ..='cd ..'
+# General
 alias q='logout'
-alias opn='open .'
 alias rm='rm -irv'
-alias getip='ipconfig getifaddr en0'
+alias nodev="env NODE_NO_READLINE=1 rlwrap node"
 
 # Copy to clipboard commands
 alias cwd='pwd | pbcopy'
 alias cip='getip | pbcopy'
+alias dance='echo -n "(งツ)ว" | pbcopy'
+alias shrug='echo -n "¯\_(ツ)_/¯" | pbcopy'
 
 # Postgres commands
 alias psql_start='brew services start postgresql'
 
 # Alias commands depending on installed prerequisites
-command -v nvim >/dev/null 2>&1 && alias vi='nvim' && alias vim='nvim'
-command -v highlight >/dev/null 2>&1 && alias ccat='highlight -O xterm256 --style=zenburn --skip --failsafe'
+if command -v "nvim" > /dev/null; then
+    alias vi='nvim'
+    alias vim='nvim'
+fi
 
+# Import local aliases if available
+if [ -f ~/.aliases.local ]; then
+    . ~/.aliases.local
+fi

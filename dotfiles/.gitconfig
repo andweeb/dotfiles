@@ -1,11 +1,7 @@
-[filter "media"]
-    required = true
-    clean = git media clean %f
-    smudge = git media smudge %f
 [user]
     name = Andrew Kwon
-    email = askwon@ucdavis.edu
-    askwon = Andrew Kwon
+    email = andrewshky@gmail.com
+    andweeb = Andrew Kwon
 [credential]
     helper = osxkeychain
 [core]
@@ -28,18 +24,17 @@
     oldHighlight = red bold 52
     newNormal = green
     newHighlight = green bold 22
-[filter "lfs"]
-    clean = git lfs clean %f
-    smudge = git lfs smudge %f
-    required = true
 [alias]
+    apply-patch = "apply --ignore-space-change --ignore-whitespace"
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     s = "status"
     st = "!f() { [[ $(git status --porcelain) ]] && ls -logrtd $(git status --porcelain | grep '^.[?M]' | sed 's/^.. //') | sed 's/^[^ ][^ ]*  *[^ ][^ ]* *[^ ][^ ]* //'; }; f"
-    diffs = "diff --staged"
     dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4; }; f"
     dsfs = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=4; }; f"
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    cb = "rev-parse --abbrev-ref HEAD"
 [push]
     default = simple
+[include]
+    path = ~/.gitconfig.local
