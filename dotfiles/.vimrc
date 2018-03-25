@@ -43,15 +43,20 @@ set undodir=~/.vim/undo//
 " ----------------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------------
-let mapleader=","
+let mapleader=" "
 
 " Error location navigation
 map <leader>n :try<bar>lnext<bar>catch /^Vim\%((\a\+)\)\=:E\%(553\<bar>42\):/<bar>lfirst<bar>endtry<cr>
 map <leader>p :lprevious<CR>
+map <leader>, :Prettier<CR>
 
 map <Space>h :noh<CR>
-map ,,<Tab> :FZF<ENTER>
+map <leader><leader><Tab> :FZF<ENTER>
 map <Space>pwd :echo expand('%:p')<CR>
+
+" nvim-completion-manager
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " No arrow keys :)
 map <up> <nop>
@@ -64,29 +69,6 @@ imap <left> <nop>
 imap <right> <nop>
 
 imap cll console.log()<Esc>^f(a
-vmap cll yocll<Esc>p
-nmap cll yiwocll<Esc>p
-imap cld console.dir()<Esc>^f(a
-vmap cld yocld<Esc>p
-nmap cld yiwocld<Esc>p
-
-" ----------------------------------------------------------------------------
-" YouCompleteMe
-" ----------------------------------------------------------------------------
-let ycm_extra_conf='~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_global_ycm_extra_conf=ycm_extra_conf
-let g:ycm_path_to_python_interpreter=system('printf $(which python)')
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_always_populate_location_list=1
-let g:ycm_allow_changing_updatetime=0
-let g:ycm_complete_in_comments=1
-let g:ycm_warning_symbol="▵"
-let g:ycm_error_symbol="✗"
-if !exists("g:ycm_semantic_triggers")
-    let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
-let g:ycm_semantic_triggers['elm'] = ['.']
 
 " ----------------------------------------------------------------------------
 " Conditional path configurations
@@ -138,8 +120,13 @@ let g:neoformat_enabled_elm = ['elm-format']
 " (JavaScript)
 let g:ale_sign_error = '×'                                " ale
 let g:ale_sign_warning = '△'
+let g:ale_fixers = {
+\ 'typescript': ['tslint']
+\ }
+let g:ale_javascript_prettier_use_local_config=1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'typescript': ['tslint'],
 \}
 let g:flow#autoclose=1                                    " vim-flow
 let javascript_enable_domhtmlcss=1                        " vim-javascript
@@ -152,6 +139,10 @@ let g:used_javascript_libs='                              " javascript-libraries
             \ flux,
             \ underscore,
             \ chai'
+let g:prettier#config#tab_width=4                         " vim-prettier
+let g:prettier#config#single_quote='true'
+let g:prettier#config#bracket_spacing='false'
+let g:prettier#exec_cmd_async=1
 
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
@@ -198,7 +189,6 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'Shougo/vimproc.vim'
     Plug 'tpope/vim-fugitive'
-    Plug 'Valloric/YouCompleteMe'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'sbdchd/neoformat'
@@ -216,6 +206,7 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
 
     " (Language syntax plugins)
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'roxma/nvim-completion-manager'
     " (Elm plugins)
     Plug 'ElmCast/elm-vim'
     " (Elixir plugins)
@@ -230,12 +221,17 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'othree/yajs.vim'
     Plug 'flowtype/vim-flow'
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+    Plug 'posva/vim-vue'
+    Plug 'digitaltoad/vim-pug'
     " (GraphQL plugins)
     Plug 'jparise/vim-graphql'
     " (TypeScript plugins)
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'leafgarland/typescript-vim'
     Plug 'Quramy/tsuquyomi'
+    " (Reason plugins)
+    Plug 'reasonml-editor/vim-reason-plus'
     " (Markdown plugins)
     Plug 'suan/vim-instant-markdown'
 
