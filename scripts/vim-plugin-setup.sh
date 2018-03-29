@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# - Initialize custom vim folders & add gruvbox colors
-# - Compile YouCompleteMe (install Node/NPM/TypeScript/Go)
+# Initialize custom vim folders & add gruvbox colors
 
 repo=$(git rev-parse --show-toplevel)
 . $repo/scripts/lib/shared
@@ -73,31 +72,6 @@ InitVim () {
     InstallFonts
 }
 
-CompileYCM () {
-    InstallYCMPrereqs
-
-    isInstalled "go" || InstallGo
-    isInstalled "node" || InstallNode
-    sudo npm install -g typescript
-
-    cd ~/.vim/plugged/YouCompleteMe && \
-        ./install.py \
-            --clang-completer \
-            --gocode-completer \
-            --tern-completer;
-
-    if [ $? -eq 0 ]; then
-        printf "\033[38;5;82mNice! YouCompleteMe successfully compiled!\033[0m\n"
-        printf "\033[38;5;215mAdd the following to your \033[4m.vimrc\033[0m\n"
-        printf "\033[38;5;204m- let g:ycm_global_ycm_extra_conf='/path/to/.ycm_extra_conf.py'\033[0m\n"
-        printf "\033[38;5;204m- let g:ycm_path_to_python_interpreter='/path/to/python'\033[0m\n"
-    else
-        printf "\033[38;5;196mUh oh :( Looks like YouCompleteMe failed to install.\033[0m\n"
-        printf "\033[38;5;11mRead the docs @ https://github.com/Valloric/YouCompleteMe\033[0m\n";
-        exit 1
-    fi
-}
-
 if [ ! -f ~/.vimrc ]; then
     clr_bold clr_red "No vimrc found, run install.sh first."
 fi
@@ -110,10 +84,6 @@ if [[ $link == "$repo"* ]]; then
     # Install vim plugins using vim-plug
     read -p "$(clr_bold clr_white "Install all vimrc plugins in using vim-plug? [Y/n]: ")" yn
     [ $yn == "Y" ] && InitVim
-
-    # Compile YouCompleteMe
-    read -p "$(clr_bold clr_white "Compile YouCompleteMe? [Y/n]: ")" yn
-    [ $yn == "Y" ] && CompileYCM
 else
     clr_bold clr_red "Unexpected vimrc, run install.sh first."
 fi

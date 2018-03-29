@@ -116,30 +116,3 @@ InstallCMake () {
     checkInstallStatus "cmake"
 }
 
-InstallYCMPrereqs () {
-    if [ "$(uname)" == "Darwin" ]; then
-        read -p "Want to continue? [Y/n] " yn
-        case $yn in
-            [Y]* )
-                clr_bold clr_brown "Installing YouCompleteMe dependencies..."
-                isInstalled "brew" || InstallBrew
-                brew install cmake
-                ;;
-            [Nn]* )
-                exit
-                ;;
-        esac
-    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        printf "\033[38;5;227mDetected \e[4mGNU/Linux\033[0m\n";
-        printf "\033[38;5;215mMake sure you have Vim 7.3.598 with python2 or python3 support before continuing.\033[0m\n"
-        read -p "Want to continue? [Y/n] " yn
-        case $yn in
-            [Y]* ) clr_bold clr_brown "Installing YouCompleteMe dependencies..."
-                isInstalled "pacapt" || InstallPacapt
-                sudo pacapt -S build-essential cmake
-                sudo pacapt -S python-dev python3-dev ;;
-            [Nn]* ) exit ;;
-        esac
-    fi
-    checkInstallStatus "cmake"
-}
