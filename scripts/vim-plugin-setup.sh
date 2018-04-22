@@ -56,7 +56,7 @@ InstallFonts () {
     case $yn in
         [Y]* )
             clr_bold clr_brown "Installing fonts..."
-            git clone https://github.com/powerline/fonts.git && ./install.sh
+            git clone https://github.com/powerline/fonts.git && ./fonts/install.sh
             ;;
         *)
             clr_white "Okay, skipping..."
@@ -73,7 +73,7 @@ InitVim () {
 }
 
 if [ ! -f ~/.vimrc ]; then
-    clr_bold clr_red "No vimrc found, run install.sh first."
+    clr_bold clr_red "No vimrc found. Symlink dotfiles/.vimrc to ~/.vimrc first."
 fi
 
 link=$(readlink ~/.vimrc)
@@ -85,6 +85,6 @@ if [[ $link == "$repo"* ]]; then
     read -p "$(clr_bold clr_white "Install all vimrc plugins in using vim-plug? [Y/n]: ")" yn
     [ $yn == "Y" ] && InitVim
 else
-    clr_bold clr_red "Unexpected vimrc, run install.sh first."
+    clr_bold clr_red "Unexpected vimrc. Symlink dotfiles/.vimrc to ~/.vimrc first."
 fi
 
