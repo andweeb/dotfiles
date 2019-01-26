@@ -54,10 +54,6 @@ map <Space>h :noh<CR>
 map <leader><leader><Tab> :FZF<ENTER>
 map <Space>pwd :echo expand('%:p')<CR>
 
-" nvim-completion-manager
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " No arrow keys :)
 map <up> <nop>
 map <down> <nop>
@@ -79,21 +75,6 @@ endif
 if has('w3m')
     let g:w3m#command=system('printf $(which w3m)')
 endif
-
-" ----------------------------------------------------------------------------
-" Colorscheme & Styles
-" ----------------------------------------------------------------------------
-try
-    colorscheme gruvbox
-
-    set background=dark
-    let g:gruvbox_contrast_dark="medium"
-    let g:gruvbox_italicize_comments=1
-    let g:gruvbox_italicize_strings=1
-
-catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme default
-endtry
 
 " ----------------------------------------------------------------------------
 " Cursor Line
@@ -179,6 +160,11 @@ endif
 set rtp+=/usr/local/opt/fzf                             " (FZF)
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim    " (Go)
 
+" let g:gruvbox_contrast_dark="light"
+let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_italicize_comments=1
+let g:gruvbox_italicize_strings=1
+
 " ----------------------------------------------------------------------------
 " Plugins (vim-plug)
 " ----------------------------------------------------------------------------
@@ -200,13 +186,27 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-repeat'
 
+    Plug 'ncm2/ncm2'
+    Plug 'roxma/nvim-yarp'
+
+    " " enable ncm2 for all buffers
+    " autocmd BufEnter * call ncm2#enable_for_buffer()
+
+    " IMPORTANTE: :help Ncm2PopupOpen for more information
+    set completeopt=noinsert,menuone,noselect
+
+    " NOTE: you need to install completion sources to get completions. Check
+    " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+    Plug 'ncm2/ncm2-bufword'
+    Plug 'ncm2/ncm2-tmux'
+    Plug 'ncm2/ncm2-path'
+
     " (Colorschemes)
     Plug 'morhetz/gruvbox'
     Plug 'flazz/vim-colorschemes'
 
     " (Language syntax plugins)
     Plug 'editorconfig/editorconfig-vim'
-    Plug 'roxma/nvim-completion-manager'
     " (Elm plugins)
     Plug 'ElmCast/elm-vim'
     " (Elixir plugins)
@@ -237,5 +237,16 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
 
     call plug#end()
 endif
+
+" ----------------------------------------------------------------------------
+" Colorscheme & Styles
+" ----------------------------------------------------------------------------
+try
+    colorscheme gruvbox
+
+    set background=dark
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme default
+endtry
 
 filetype plugin indent on

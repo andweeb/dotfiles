@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+# ----------------------- #
+# Backup current defaults #
+# ----------------------- #
+defaults read > "user.defaults.$(date +%F_%R)"
+
+# ---------------- #
+# General Settings #
+# ---------------- #
+# Appearance: Dark 
+defaults write Apple\ Global\ Domain AppleInterfaceStyle Dark
+
+# Accent color: White
+defaults write Apple\ Global\ Domain AppleAccentColor -1
+
+# Highlight color: Graphite
+defaults write Apple\ Global\ Domain AppleHighlightColor -string "0.847059 0.847059 0.862745"
+
+# Sidebar icon size: Small
+defaults write Apple\ Global\ Domain NSTableViewDefaultSizeMode 1;
+
+# Show scroll bars
+defaults write Apple\ Global\ Domain AppleShowScrollBars Automatic;
+
+# Click in the scroll bar to
+defaults write Apple\ Global\ Domain AppleScrollerPagingBehavior = 0;
+
+# ------------- #
+# Dock Settings #
+# ------------- #
+# Size
+defaults write com.apple.dock tilesize -int 28
+
+# Magnification: off
+defaults write com.apple.dock magnification 0;
+
+# Position on screen: left
+defaults write com.apple.dock orientation left;
+
+# Minimize windows using: genie
+defaults write com.apple.dock mineffect genie;
+
+# Double-click a window's title bar to: minimize
+defaults write Apple\ Global\ Domain AppleActionOnDoubleClick Minimize;
+
+# Automatically hide and show the Dock: true
+defaults write com.apple.dock autohide = 1;
+
+# Show recent applications in Dock: false
+defaults write com.apple.dock show-recents -bool false
+
+# ----------------- #
+# Keyboard Settings #
+# ----------------- #
+# Key Repeat: Fast(er)
+defaults write NSGlobalDomain KeyRepeat -int 1
+
+# Delay Until Repeat: Short(er)
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# Correct spelling automatically: false
+defaults write Apple\ Global\ Domain NSAutomaticCapitalizationEnabled = 0;
+
+# Capitalize words automatically: false
+defaults write Apple\ Global\ Domain NSAutomaticPeriodSubstitutionEnabled = 0;
+
+# Add period with double-space: false
+defaults write Apple\ Global\ Domain NSAutomaticSpellingCorrectionEnabled = 0;
+
+# Use smart quotes and dashes: false
+defaults write Apple\ Global\ Domain WebAutomaticSpellingCorrectionEnabled = 0;
+
+# ---------------------- #
+# Accessibility Settings #
+# ---------------------- #
+# Use scroll gesture with the modifier keys to zoom: ^ Control
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+
+# Zoom follows the keyboard focus: true
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+
+# Reduce motion: true
+defaults write com.apple.universalaccess reduceMotion 1;
