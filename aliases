@@ -5,12 +5,8 @@ alias nodev="env NODE_NO_READLINE=1 rlwrap node"
 
 # Copy to clipboard commands
 alias cwd='pwd | pbcopy'
-alias cip='getip | pbcopy'
 alias dance='echo -n "(งツ)ว" | pbcopy'
 alias shrug='echo -n "¯\_(ツ)_/¯" | pbcopy'
-
-# Postgres commands
-alias psql_start='brew services start postgresql'
 
 # Alias commands depending on installed prerequisites
 if command -v "nvim" > /dev/null; then
