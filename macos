@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+if [ ! $SUDO_USER ]; then echo "requires sudo" && exit 1; fi
+
 # ----------------------- #
 # Backup current defaults #
 # ----------------------- #
@@ -24,7 +26,7 @@ defaults write Apple\ Global\ Domain NSTableViewDefaultSizeMode 1;
 defaults write Apple\ Global\ Domain AppleShowScrollBars Automatic;
 
 # Click in the scroll bar to
-defaults write Apple\ Global\ Domain AppleScrollerPagingBehavior = 0;
+defaults write Apple\ Global\ Domain AppleScrollerPagingBehavior 0;
 
 # ------------- #
 # Dock Settings #
@@ -45,7 +47,7 @@ defaults write com.apple.dock mineffect genie;
 defaults write Apple\ Global\ Domain AppleActionOnDoubleClick Minimize;
 
 # Automatically hide and show the Dock: true
-defaults write com.apple.dock autohide = 1;
+defaults write com.apple.dock autohide 1;
 
 # Show recent applications in Dock: false
 defaults write com.apple.dock show-recents -bool false
@@ -54,22 +56,22 @@ defaults write com.apple.dock show-recents -bool false
 # Keyboard Settings #
 # ----------------- #
 # Key Repeat: Fast(er)
-defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat 1
 
 # Delay Until Repeat: Short(er)
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Correct spelling automatically: false
-defaults write Apple\ Global\ Domain NSAutomaticCapitalizationEnabled = 0;
+defaults write Apple\ Global\ Domain NSAutomaticCapitalizationEnabled 0;
 
 # Capitalize words automatically: false
-defaults write Apple\ Global\ Domain NSAutomaticPeriodSubstitutionEnabled = 0;
+defaults write Apple\ Global\ Domain NSAutomaticPeriodSubstitutionEnabled 0;
 
 # Add period with double-space: false
-defaults write Apple\ Global\ Domain NSAutomaticSpellingCorrectionEnabled = 0;
+defaults write Apple\ Global\ Domain NSAutomaticSpellingCorrectionEnabled 0;
 
 # Use smart quotes and dashes: false
-defaults write Apple\ Global\ Domain WebAutomaticSpellingCorrectionEnabled = 0;
+defaults write Apple\ Global\ Domain WebAutomaticSpellingCorrectionEnabled 0;
 
 # ---------------------- #
 # Accessibility Settings #
