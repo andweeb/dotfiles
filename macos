@@ -80,8 +80,8 @@ defaults write Apple\ Global\ Domain WebAutomaticSpellingCorrectionEnabled 0;
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
-# Zoom follows the keyboard focus: true
-defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+# Zoom follows the keyboard focus: false
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool false
 
 # Reduce motion: true
 defaults write com.apple.universalaccess reduceMotion 1;
