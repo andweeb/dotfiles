@@ -81,7 +81,7 @@ defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
 # Zoom follows the keyboard focus: false
-defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool false
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus 0
 
 # Reduce motion: true
 defaults write com.apple.universalaccess reduceMotion 1;
