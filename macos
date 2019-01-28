@@ -59,7 +59,7 @@ defaults write com.apple.dock show-recents -bool false
 defaults write NSGlobalDomain KeyRepeat 1
 
 # Delay Until Repeat: Short(er)
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Correct spelling automatically: false
 defaults write Apple\ Global\ Domain NSAutomaticCapitalizationEnabled 0;
