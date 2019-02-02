@@ -4,7 +4,7 @@
 syntax enable
 set clipboard=unnamed      " Enable clipboard sharing
 set timeoutlen=300         " Set mapped sequence delay to 200ms
-set relativenumber         " Relative numbers
+set number relativenumber  " Relative numbers
 set laststatus=0           " Don't display the status line
 set formatoptions+=n       " Support for numbered/bullet lists
 set ts=4 sw=4 expandtab    " 4-space tabstops & 4-space shiftwidth (indent)
