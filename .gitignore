@@ -1,5 +1,5 @@
 .DS_Store
 fonts/
 hammerspoon/Spoons
-hammerspoon/local-ki-events.lua
+hammerspoon/local-*
 user.defaults.*
