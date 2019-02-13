@@ -36,14 +36,6 @@ if [ -f ~/.oh-my-zsh/custom/themes/+.zsh-theme ]; then
     export ZSH_THEME="+"
 fi
 
-# Start in tmux if installed with reattach-to-user-namespace
-if ! [ -n "$TMUX" ]; then
-    command -v tmux >/dev/null 2>&1 &&
-    command -v reattach-to-user-namespace >/dev/null 2>&1 && {
-        exec tmux
-    }
-fi
-
 # Source an existing aliases dotfile
 if [ -f ~/.aliases ]; then
     source ~/.aliases
