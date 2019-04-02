@@ -130,6 +130,7 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-repeat'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " (Colorschemes)
     Plug 'morhetz/gruvbox'
@@ -155,6 +156,9 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
 
     call plug#end()
 endif
+
+" (Deoplete)
+let g:deoplete#enable_at_startup = 1
 
 " ----------------------------------------------------------------------------
 " Colorscheme & Styles
