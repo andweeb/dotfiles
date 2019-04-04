@@ -40,11 +40,14 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
+" Tab completion
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " ----------------------------------------------------------------------------
 " Conditional path configurations
 " ----------------------------------------------------------------------------
 if has('nvim')
-    let g:python_host_prog=system('printf $(which python3)')
+    let g:python3_host_prog=system('printf $(which python3)')
 endif
 if has('w3m')
     let g:w3m#command=system('printf $(which w3m)')
