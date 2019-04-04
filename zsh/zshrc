@@ -10,6 +10,14 @@ __load ~/.nix-profile/etc/profile.d/nix.sh
 # Best prompt of all time
 PROMPT='%F{cyan}%3~%f '
 
+# Store history
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt sharehistory
+setopt appendhistory
+setopt incappendhistory
+
 # Disable auto-correct
 unsetopt CORRECT
 

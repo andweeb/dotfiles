@@ -6,7 +6,6 @@ export KEYTIMEOUT=1
 
 # Allow history search
 bindkey '^R' history-incremental-search-backward
-HISTFILE=~/.zsh_history
 
 # Vim Surround
 autoload -Uz surround
