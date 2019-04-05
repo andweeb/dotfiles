@@ -35,3 +35,5 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 export FZF_TMUX=1
 export FZF_TMUX_HEIGHT='40%'
 export FZF_COMPLETION_TRIGGER=',,'
+
+export PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
