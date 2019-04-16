@@ -24,6 +24,9 @@ unsetopt CORRECT
 # Less options
 export LESS=mR
 
+# Grep options
+export GREP_OPTIONS='--color=auto'
+
 # Enable and configure zsh completions
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
