@@ -1,6 +1,14 @@
 colorscheme dark
 
+" Use blank page on new tabs
+set newtab about:blank
+
+" Lessen individual scroll line height
 bind j scrollline 5
 bind k scrollline -5
+
+" Enter ignore mode with i and <Escape> to normal
+bind i mode ignore
+bind --mode=ignore <Escape> mode normal
 
 " vim: set filetype=vim:
