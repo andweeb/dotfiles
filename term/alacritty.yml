@@ -86,7 +86,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    #family: monospace
+    family: Menlo
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -97,7 +97,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: Menlo
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -108,7 +108,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: Menlo
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -280,13 +280,13 @@ mouse:
     #   - (macOS) open
     #   - (Linux) xdg-open
     #   - (Windows) explorer
-    #launcher: xdg-open
+    launcher: open
 
     # URL modifiers
     #
     # These are the modifiers that need to be held down for opening URLs when clicking
     # on them. The available modifiers are documented in the key binding section.
-    modifiers: None
+    # modifiers: None
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
