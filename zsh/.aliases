@@ -6,6 +6,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cwd='pwd | pbcopy'
 
+alias bat='bat --theme="gruvbox-dark"'
+
 # Alias if neovim is installed
 if command -v "nvim" > /dev/null; then
     alias vi='nvim'
