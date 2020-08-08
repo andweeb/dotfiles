@@ -56,18 +56,16 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-    " (Editor Config)
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
     " (Go)
     Plug 'fatih/vim-go'
 
     " (JavaScript)
     Plug 'pangloss/vim-javascript'
-    Plug 'flowtype/vim-flow'
-    Plug 'mxw/vim-jsx'
+    Plug 'MaxMEllon/vim-jsx-pretty'
 
     " (GraphQL)
     Plug 'jparise/vim-graphql'
@@ -75,21 +73,33 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     " (Markdown)
     Plug 'suan/vim-instant-markdown'
 
+    " (TypeScript and TSX)
+    Plug 'Quramy/tsuquyomi', { 'do': 'npm -g install typescript' }
+    Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+    Plug 'HerringtonDarkholme/yats.vim'
+
+    " (AppleScript)
+    Plug 'dearrrfish/vim-applescript'
+
+    " (Elm)
+    Plug 'elmcast/elm-vim'
+
+    " (MoonScript)
+    Plug 'leafo/moonscript-vim'
+
     call plug#end()
 
     let g:ale_sign_error = '×'            " (ale)
     let g:ale_sign_warning = '△'
     let g:ale_fixers = {
-    \ 	'typescript': ['tslint']
+    \ 	'typescript': ['eslint']
     \ }
     let g:ale_linters = {
     \   'javascript': ['eslint'],
-    \   'typescript': ['tslint'],
+    \   'typescript': ['eslint'],
     \}
-    let g:flow#autoclose=1                " (vim-flow)
     let javascript_enable_domhtmlcss=1    " (vim-javascript)
     let g:javascript_plugin_flow=1
-    let g:jsx_ext_required=0              " (mxw/vim-jsx)
 
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
@@ -109,6 +119,9 @@ if !empty(glob('~/.config/nvim/autoload/plug.vim')) || !empty(glob('~/.vim/autol
     au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
     au FileType go nmap <leader>gdc <Plug>(go-doc)
 
+    " (HerringtonDarkholme/yats.vim)
+    let g:yats_host_keyword = 1
+
     " (suan/vim-instant-markdown)
     let g:instant_markdown_autostart=0
 
@@ -126,3 +139,13 @@ endif
 if !empty(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
