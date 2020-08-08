@@ -8,6 +8,10 @@ set number relativenumber  " Relative numbers
 set laststatus=0           " Don't display the status line
 set formatoptions+=n       " Support for numbered/bullet lists
 set ts=4 sw=4 expandtab    " 4-space tabstops & 4-space shiftwidth (indent)
+set foldenable             " Enable folds
+set foldmethod=marker      " Use fold markers
+set foldopen-=block        " Disallow block motions from opening folds
+set cmdheight=1            " Shorten the cmd height a bit
 
 " --------------------------------------------------------------------------------------------------
 " Designated backup/swp folder
