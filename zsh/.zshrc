@@ -4,7 +4,6 @@ __load ~/.zle.zsh
 __load ~/.fzf.zsh
 __load ~/.aliases
 __load ~/.colors.zsh
-__load ~/.local.zsh
 __load ~/.nix-profile/etc/profile.d/nix.sh
 
 # Best prompt of all time
@@ -12,8 +11,8 @@ PROMPT='%F{cyan}%3~%f '
 
 # Store history
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
 setopt sharehistory
 setopt appendhistory
 setopt incappendhistory
@@ -25,7 +24,7 @@ unsetopt CORRECT
 export LESS=mR
 
 # Grep options
-export GREP_OPTIONS='--color=auto'
+export GREP_OPTIONS='--color=always'
 
 # Enable and configure zsh completions
 autoload -U compinit && compinit
@@ -39,4 +38,5 @@ export FZF_TMUX=1
 export FZF_TMUX_HEIGHT='40%'
 export FZF_COMPLETION_TRIGGER=',,'
 
-export PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
+# Load local zsh config
+__load ~/.local.zsh
