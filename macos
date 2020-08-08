@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ ! $SUDO_USER ]; then echo "requires sudo" && exit 1; fi
+if [ ! "$SUDO_USER" ]; then echo "requires sudo" && exit 1; fi
 
 # ----------------------- #
 # Backup current defaults #
@@ -72,6 +72,9 @@ defaults write Apple\ Global\ Domain NSAutomaticSpellingCorrectionEnabled 0;
 
 # Use smart quotes and dashes: false
 defaults write Apple\ Global\ Domain WebAutomaticSpellingCorrectionEnabled 0;
+
+# Disable accented characters tooltip
+defaults write -g ApplePressAndHoldEnabled -bool false
 
 # ---------------------- #
 # Accessibility Settings #
