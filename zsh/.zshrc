@@ -2,8 +2,8 @@
 function __load { [ -f "$1" ] && . "$1"; }
 __load ~/.zle.zsh
 __load ~/.fzf.zsh
-__load ~/.aliases
 __load ~/.colors.zsh
+__load ~/.aliases.zsh
 __load ~/.nix-profile/etc/profile.d/nix.sh
 
 # Best prompt of all time
