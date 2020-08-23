@@ -1,4 +1,4 @@
-[submodule "hammerspoon"]
-	path = hammerspoon
-	url = https://github.com/andweeb/.hammerspoon.git
+[submodule ".hammerspoon"]
+	path = .hammerspoon
+	url = https://github.com/andweeb/.hammerspoon
 	branch = develop
