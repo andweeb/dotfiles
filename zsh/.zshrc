@@ -33,10 +33,5 @@ zstyle -e ':completion:*:default' \
     list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# FZF
-export FZF_TMUX=1
-export FZF_TMUX_HEIGHT='40%'
-export FZF_COMPLETION_TRIGGER=',,'
-
 # Load local zsh config
 __load ~/.local.zsh
