@@ -3,7 +3,7 @@
 SHELL = bash
 TAG = andrew.dotfile
 ZSH = $(notdir $(wildcard $(CURDIR)/zsh/.*zsh*))
-DOTFILES = .gitconfig .vimrc .tmux.conf .hammerspoon
+DOTFILES = .vimrc .tmux.conf .gitconfig .hammerspoon
 
 define symlink
 	@echo "$< => $(2)"
@@ -11,10 +11,12 @@ define symlink
 endef
 
 # Symlink all dotfiles
-link: $(foreach f, $(DOTFILES) $(ZSH), link-$(f))
+link: $(foreach f, $(ZSH) $(DOTFILES), link-$(f))
 link-%: %
 	$(call symlink,$(CURDIR)/$<,$(HOME)/$<)
 link-%: zsh/%
+	$(call symlink,$(CURDIR)/$<,$(HOME)/$(notdir $<))
+link-%: vim/%
 	$(call symlink,$(CURDIR)/$<,$(HOME)/$(notdir $<))
 
 # Clean dotfiles explicitly tagged by this Makefile
