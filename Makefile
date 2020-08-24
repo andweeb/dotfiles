@@ -8,13 +8,13 @@ DOTFILES = .gitconfig .vimrc .tmux.conf .hammerspoon
 dotfiles: zsh $(foreach f, $(DOTFILES), dotfiles-$(f))
 dotfiles-%: %
 	@echo "$< => $(HOME)/$<"
-	@ln -si $(CURDIR)/$< $(HOME)/$(notdir $<) && xattr -ws $(TAG) true $(HOME)/$(notdir $<)
+	@-ln -si $(CURDIR)/$< $(HOME)/$(notdir $<) && xattr -ws $(TAG) true $(HOME)/$(notdir $<)
 
 # Symlink zsh dotfiles
 zsh: $(foreach f, $(ZSH), zsh-$(f))
 zsh-%: zsh/%
 	@echo "$< => $(HOME)/$(notdir $<)"
-	@ln -si $(CURDIR)/$< $(HOME)/$(notdir $<) && xattr -ws $(TAG) true $(HOME)/$(notdir $<)
+	@-ln -si $(CURDIR)/$< $(HOME)/$(notdir $<) && xattr -ws $(TAG) true $(HOME)/$(notdir $<)
 
 # Clean dotfiles explicitly tagged by this Makefile
 .PHONY: confirm_clean clean
