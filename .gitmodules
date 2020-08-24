@@ -2,3 +2,4 @@
 	path = .hammerspoon
 	url = https://github.com/andweeb/.hammerspoon
 	branch = develop
+    ignore = dirty
