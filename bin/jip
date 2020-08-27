@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# jip: open jira issue page
+# usage: jip [-h|--home] [-i|--issue=[ISSUE_CODE]] [-b|--branch-name=[BRANCH_NAME]]
+
+for i in "$@"
+do
+    case $i in
+
+        -i=*|--issue=*)
+            open "$JIRA_URL/browse/${i#*=}"
+            shift
+        ;;
+
+        -b|--branch-name)
+            issue=$(git rev-parse --abbrev-ref HEAD)
+            open "$JIRA_URL/browse/${issue##*/}"
+            shift
+        ;;
+
+        -h|--home)
+            open "$JIRA_URL"
+            shift
+        ;;
+
+        *) # unknown flag
+        ;;
+    esac
+done
