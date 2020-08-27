@@ -2,36 +2,42 @@
 
 SHELL = bash
 TAG = andrew.dotfile
-DOTFILES = .vimrc .tmux.conf .hammerspoon
+XDG_FILES = alacritty bat git
+HOME_FILES = .vimrc .tmux.conf .hammerspoon
 ZSH = $(notdir $(wildcard $(CURDIR)/zsh/.*zsh*))
-XDG=$(if $(XDG_CONFIG_HOME), $(XDG_CONFIG_HOME), $(HOME)/.config)
+XDG_CONFIG_DIR = $(if $(XDG_CONFIG_HOME), $(XDG_CONFIG_HOME), $(HOME)/.config)
 
 define symlink
 	@echo "$(if $<, $<, $(notdir $(1))) => $(2)"
-	@-ln -shi $(1) $(2) && xattr -ws $(TAG) true $(2)
+	@-ln -shiF $(1) $(2) && xattr -ws $(TAG) true $(2)
 endef
 
+link: link-home link-xdg
+
 # Link all dotfiles
-link: $(foreach f, $(ZSH) $(DOTFILES), link-$(f)) link-git
-link-%: %
+link-home: $(foreach f, $(ZSH) $(HOME_FILES), link-home-$(f))
+link-home-%: %
 	$(call symlink, $(CURDIR)/$<, $(HOME)/$<)
 
 # Link files in subdirectories
-link-%: zsh/%
+link-home-%: zsh/%
 	$(call symlink, $(CURDIR)/$<, $(HOME)/$(notdir $<))
-link-%: vim/%
+link-home-%: vim/%
 	$(call symlink, $(CURDIR)/$<, $(HOME)/$(notdir $<))
 
 # Link git directory to XDG config location
-link-git:
-	$(call symlink, $(CURDIR)/git, $(XDG)/git)
+$(XDG_CONFIG_DIR):
+	mkdir -p $(XDG_CONFIG_DIR)
+link-xdg: $(XDG_CONFIG_DIR) $(foreach f, $(XDG_FILES), link-xdg-$(f))
+link-xdg-%: %
+	$(call symlink, $(CURDIR)/$<, $(XDG_CONFIG_DIR)/$<)
 
 # Clean dotfiles explicitly tagged by this Makefile
 .PHONY: confirm-clean clean
 clean: confirm-clean
-	@find $(HOME) $(XDG) -maxdepth 1 -xattrname andrew.dotfile -delete
+	@find $(HOME) $(XDG_CONFIG_DIR) -maxdepth 1 -xattrname andrew.dotfile -delete
 	@echo "Done."
 confirm-clean:
 	@echo "The following symlinks will be removed:"
-	@find $(HOME) $(XDG) -maxdepth 1 -xattrname andrew.dotfile
+	@find $(HOME) $(XDG_CONFIG_DIR) -maxdepth 1 -xattrname andrew.dotfile
 	@echo -n "Continue? [y/N] " && read ans && [ $${ans:-N} = y ]
