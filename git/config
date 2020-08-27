@@ -1,0 +1,16 @@
+[user]
+    name = Andrew Kwon
+    email = andrewshky@gmail.com
+    andweeb = Andrew Kwon
+[credential]
+    helper = osxkeychain
+[core]
+    editor = nvim
+[push]
+    default = simple
+[include]
+    path = .colors.gitconfig
+[include]
+    path = .aliases.gitconfig
+[include]
+    path = ~/.gitconfig.local

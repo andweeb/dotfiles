@@ -1,0 +1,18 @@
+[color]
+    ui = always
+[color "status"]
+    added = green
+    changed = red
+    untracked = cyan
+[color "diff"]
+    meta = yellow bold
+    commit = green
+    frag = magenta bold
+    old = red
+    new = green
+    whitespace = red reverse
+[color "diff-highlight"]
+    oldNormal = red
+    oldHighlight = red bold 52
+    newNormal = green
+    newHighlight = green bold 22

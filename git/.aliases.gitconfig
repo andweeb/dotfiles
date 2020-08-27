@@ -1,29 +1,3 @@
-[user]
-    name = Andrew Kwon
-    email = andrewshky@gmail.com
-    andweeb = Andrew Kwon
-[credential]
-    helper = osxkeychain
-[core]
-    editor = nvim
-[color]
-    ui = always
-[color "status"]
-    added = green
-    changed = red
-    untracked = cyan
-[color "diff"]
-    meta = yellow bold
-    commit = green
-    frag = magenta bold
-    old = red
-    new = green
-    whitespace = red reverse
-[color "diff-highlight"]
-    oldNormal = red
-    oldHighlight = red bold 52
-    newNormal = green
-    newHighlight = green bold 22
 [alias]
     save-patch = "stash show -p --color=never > changes.patch"
     apply-patch = "apply --ignore-space-change --ignore-whitespace"
@@ -33,7 +7,3 @@
     dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4; }; f"
     dsfs = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=4; }; f"
     cb = "rev-parse --abbrev-ref HEAD"
-[push]
-    default = simple
-[include]
-    path = ~/.gitconfig.local
