@@ -1,0 +1,13 @@
+dark = {
+    GridAdded = 777739;
+    GridDeleted = BB6B65;
+    GridModified = CB9733;
+    SQLBacktickQuote = AEAF4B;
+    SQLComment = 8A898A;
+    SQLDoubleQuote = AEAF36;
+    SQLKeyword = C86662;
+    SQLNumber = CB8AAD;
+    SQLOther = F8D8B3;
+    SQLSelectedTextBackground = 414241;
+    SQLSingleQuote = AEAF36;
+};
