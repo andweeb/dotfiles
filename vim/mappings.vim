@@ -24,8 +24,8 @@ imap <right> <nop>
 
 " Use tab for trigger completion with characters ahead and navigate.
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :

@@ -1,11 +1,10 @@
-" General
+" Source filetype plugins and enable syntax highlighting
+filetype plugin indent on
 syntax enable
+
+" Various settings
 set clipboard=unnamed      " Enable clipboard sharing
 set timeoutlen=300         " Set mapped sequence delay to 300ms
-set formatoptions+=n       " Support for numbered/bullet lists
-set foldenable             " Enable folds
-set foldmethod=marker      " Use fold markers
-set foldopen-=block        " Disallow block motions from opening folds
 
 " Designated backup folder
 set backupdir=~/.vim/backup//
