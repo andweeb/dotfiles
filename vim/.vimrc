@@ -3,7 +3,7 @@ filetype plugin indent on
 syntax enable
 
 " Various settings
-set clipboard=unnamed " Enable clipboard sharing
+set clipboard+=unnamedplus " Enable clipboard sharing
 set timeoutlen=300    " Set mapped sequence delay to 300ms
 
 " Designated backup folder
