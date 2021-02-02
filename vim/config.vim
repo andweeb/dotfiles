@@ -1,4 +1,5 @@
-" Plugin configurations
+" Embedded script syntax highlighting
+let g:vimsyn_embed = 'l'
 
 " Linting and intellisense:
 "
@@ -29,10 +30,13 @@ let g:instant_markdown_autostart=0
 " Colorscheme
 "
 " (morhetz/gruvbox)
+let g:gruvbox_contrast_dark="hard"
 try
     colorscheme gruvbox
-    let g:gruvbox_contrast_dark="hard"
-    set background=dark
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
 endtry
+
+" LSP
+lua package.path = package.path..";"..vim.g.srcdir.."/?.lua"
+lua require("lsp")

@@ -20,14 +20,8 @@ Plug 'junegunn/fzf', {
 
 " Linting and intellisense
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {
-\   'branch': 'release',
-\   'for': [
-\       'go', 'lua',
-\       'typescript', 'typescriptreact',
-\       'javascript', 'javascriptreact'
-\   ]
-\ }
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 
 " Language Support plugins
 Plug 'jparise/vim-graphql', { 'for': 'graphql' }

@@ -16,13 +16,13 @@ runtime macros/matchit.vim
 
 " Get current vimrc path and directory
 let s:rcpath=resolve(expand('<sfile>:p'))
-let s:srcdir=fnamemodify(s:rcpath, ':h')
+let g:srcdir=fnamemodify(s:rcpath, ':h')
 
 " Source external configs
-execute 'source'.s:srcdir.'/ui.vim'
-execute 'source'.s:srcdir.'/plugins.vim'
-execute 'source'.s:srcdir.'/mappings.vim'
-execute 'source'.s:srcdir.'/config.vim'
+execute 'source'.g:srcdir.'/ui.vim'
+execute 'source'.g:srcdir.'/plugins.vim'
+execute 'source'.g:srcdir.'/mappings.vim'
+execute 'source'.g:srcdir.'/config.vim'
 
 " Load local vimrc if it exists
 if !empty(glob('~/.vimrc.local'))
