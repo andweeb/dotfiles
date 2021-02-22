@@ -26,6 +26,9 @@ export LESS=mR
 # Grep options
 export GREP_OPTIONS='--color=always'
 
+# Googler options
+export GOOGLER_COLORS=cCdxxy
+
 # Enable and configure zsh completions
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
