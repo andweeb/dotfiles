@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# gh_release_asset: get a GitHub release asset download link
+# usage: gh_release_asset REPO FILENAME [tags/TAG]
+
+release=$3
+
+if [ -z "$release" ]; then
+  release="latest"
+fi
+
+curl -s "https://api.github.com/repos/$1/releases/$release" \
+    | grep --color=never "github.*download.*$2" \
+    | cut -d\" -f4

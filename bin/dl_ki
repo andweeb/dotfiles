@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# dl_ki: download Ki.spoon and add to Hammerspoon config directory
+
+filename="Ki.spoon.zip"
+spoon_dir="$HOME/.hammerspoon/Spoons"
+link=$(./gh_release_asset "andweeb/Ki" $filename)
+
+mkdir -p "$spoon_dir"
+
+curl -L -o "$spoon_dir/$filename" "$link" && \
+    unzip "$spoon_dir/$filename" -d "$spoon_dir"

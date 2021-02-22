@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# dl_nvim: download nightly neovim release binary
+
+filename="nvim-macos.tar.gz"
+link=$(./gh_release_asset "neovim/neovim" $filename "tags/nightly")
+
+curl -OL "$link" && \
+    tar -xf $filename && \
+    rm $filename
