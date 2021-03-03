@@ -13,6 +13,9 @@ Plug 'junegunn/vim-easy-align'
 
 " Utilities
 Plug 'editorconfig/editorconfig-vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'junegunn/fzf', {
 \   'dir': '~/.fzf',
 \   'do': { -> fzf#install() }
@@ -40,5 +43,8 @@ Plug 'pangloss/vim-javascript', {
 Plug 'MaxMEllon/vim-jsx-pretty', {
 \   'for': ['javascript', 'javascriptreact']
 \ }
+
+" Funsies
+Plug 'andweeb/presence.nvim'
 
 call plug#end()

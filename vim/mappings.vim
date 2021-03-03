@@ -31,6 +31,12 @@ map <leader><leader><Tab> :FZF<ENTER>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "
+" (nvim-telescope/telescope.nvim)
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+"
 " (fatih/vim-go)
 au FileType go nmap <leader>gf <Plug>(go-def)
 au FileType go nmap <Leader>gi <Plug>(go-info)
