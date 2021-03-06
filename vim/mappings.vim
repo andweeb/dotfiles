@@ -23,9 +23,6 @@ imap <right> <nop>
 
 " Plugin mappings
 "
-" (junegunn/fzf)
-map <leader><leader><Tab> :FZF<ENTER>
-"
 " (nvim-lua/completion-nvim)
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"

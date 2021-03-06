@@ -16,10 +16,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'junegunn/fzf', {
-\   'dir': '~/.fzf',
-\   'do': { -> fzf#install() }
-\ }
 
 " Linting and intellisense
 Plug 'dense-analysis/ale'
