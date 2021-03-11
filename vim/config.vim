@@ -40,3 +40,13 @@ endtry
 " LSP
 lua package.path = package.path..";"..vim.g.srcdir.."/?.lua"
 lua require("lsp")
+
+" Treesitter
+lua <<EOF
+local treesitter = require('nvim-treesitter.configs')
+treesitter.setup {
+    highlight = {
+        enable = true,
+    },
+}
+EOF
