@@ -29,11 +29,12 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "
 " (nvim-telescope/telescope.nvim)
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fb <cmd>Telescope git_branches<cr>
 nnoremap <leader>fc <cmd>Telescope git_commits<cr>
+nnoremap <leader>fs <cmd>Telescope git_status<cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 "
 " (fatih/vim-go)
