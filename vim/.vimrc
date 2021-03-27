@@ -4,7 +4,7 @@ syntax enable
 
 " Various settings
 set clipboard+=unnamedplus " Enable clipboard sharing
-set timeoutlen=300    " Set mapped sequence delay to 300ms
+set timeoutlen=300         " Set mapped sequence delay to 300ms
 
 " Designated backup folder
 set backupdir=~/.vim/backup//

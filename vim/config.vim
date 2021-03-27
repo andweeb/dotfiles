@@ -32,7 +32,9 @@ let g:instant_markdown_autostart=0
 " (morhetz/gruvbox)
 let g:gruvbox_contrast_dark="hard"
 try
+    let g:gruvbox_italic=1
     colorscheme gruvbox
+    highlight Comment cterm=italic
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
 endtry
