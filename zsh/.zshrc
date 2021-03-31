@@ -1,5 +1,5 @@
 # Current dotfiles directory
-DOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTDIR=~/Code/dotfiles
 ZSHDIR="$DOTDIR/zsh"
 
 # Load any of the following files that exist
@@ -30,8 +30,12 @@ export LESS=mR                       # Less options
 __load $DOTDIR/asdf/asdf.sh
 fpath=($DOTDIR/asdf/completions $fpath)
 
-# Enable and configure zsh completions to use fzf
+# Enable and configure zsh completions with fzf
 autoload -U compinit && compinit
+zstyle ':completion:*' menu select
+zstyle -e ':completion:*:default' \
+    list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 __load $DOTDIR/fzf-tab/fzf-tab.plugin.zsh
 
 # Load local zsh config
