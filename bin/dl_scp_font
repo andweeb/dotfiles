@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# dl_scp_font: download latest Source Code Pro OTF font
+
+filename="OTF"
+link=$(./gh_release_asset "adobe-fonts/source-code-pro" $filename "latest")
+
+curl -OL "$link" && \
+    unzip -d "Source Code Pro" "$filename*"
