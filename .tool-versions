@@ -1,0 +1,4 @@
+lua 5.4.2
+golang 1.16.2
+nodejs latest
+neovim nightly
