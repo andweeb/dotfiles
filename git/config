@@ -6,6 +6,7 @@
     helper = osxkeychain
 [core]
     editor = nvim
+	pager = diff-so-fancy | less --tabs=4
 [push]
     default = simple
 [include]
@@ -14,3 +15,5 @@
     path = .aliases.gitconfig
 [include]
     path = ~/.gitconfig.local
+[interactive]
+	diffFilter = diff-so-fancy --patch
