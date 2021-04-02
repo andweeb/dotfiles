@@ -4,8 +4,11 @@
 	branch = develop
     ignore = dirty
 [submodule "fzf-tab"]
-	path = fzf-tab
+	path = packages/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab.git
 [submodule "asdf"]
-	path = asdf
+	path = packages/asdf
 	url = https://github.com/asdf-vm/asdf.git
+[submodule "packages/diff-so-fancy"]
+	path = packages/diff-so-fancy
+	url = https://github.com/so-fancy/diff-so-fancy.git
