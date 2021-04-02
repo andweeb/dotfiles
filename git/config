@@ -10,10 +10,8 @@
 [push]
     default = simple
 [include]
-    path = .colors.gitconfig
-[include]
-    path = .aliases.gitconfig
-[include]
-    path = ~/.gitconfig.local
+    path = colors.gitconfig
+    path = aliases.gitconfig
+    path = ./gitconfig.local
 [interactive]
 	diffFilter = diff-so-fancy --patch

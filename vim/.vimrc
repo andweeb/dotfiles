@@ -18,13 +18,17 @@ runtime macros/matchit.vim
 let s:rcpath=resolve(expand('<sfile>:p'))
 let g:srcdir=fnamemodify(s:rcpath, ':h')
 
+function s:dotfile(filename)
+    execute 'source'.g:srcdir.'/'.a:filename
+endfunction
+
 " Source external configs
-execute 'source'.g:srcdir.'/ui.vim'
-execute 'source'.g:srcdir.'/plugins.vim'
-execute 'source'.g:srcdir.'/mappings.vim'
-execute 'source'.g:srcdir.'/config.vim'
+execute s:dotfile('ui.vim')
+execute s:dotfile('plugins.vim')
+execute s:dotfile('mappings.vim')
+execute s:dotfile('config.vim')
 
 " Load local vimrc if it exists
-if !empty(glob('~/.vimrc.local'))
-    source ~/.vimrc.local
+if !empty(glob(g:srcdir.'/vimrc.local'))
+    execute s:dotfile('vimrc.local')
 endif
