@@ -15,3 +15,6 @@ export FZF_TMUX=1
 export FZF_TMUX_HEIGHT="40%"
 export FZF_COMPLETION_TRIGGER=",,"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+
+# Use fzf with a preview window using bat
+alias fzf="fzf --preview 'bat --style=numbers --theme="gruvbox-dark" --color=always --line-range :500 {}'"

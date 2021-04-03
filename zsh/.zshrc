@@ -24,6 +24,9 @@ setopt incappendhistory
 # Disable auto-correct
 unsetopt CORRECT
 
+# Set italic terminfo
+export TERM=xterm-256color-italic
+
 # Utility options
 export GREP_OPTIONS='--color=always' # Grep options
 export LESS=mR                       # Less options

@@ -2,3 +2,7 @@ lua 5.4.2
 golang 1.16.2
 nodejs latest
 neovim nightly
+fd 8.2.1
+bat 0.18.0
+ripgrep 12.1.1
+tmux 3.1c
