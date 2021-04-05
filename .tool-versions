@@ -6,3 +6,4 @@ fd 8.2.1
 bat 0.18.0
 ripgrep 12.1.1
 tmux 3.1c
+postgres 13.2
