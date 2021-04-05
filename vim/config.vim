@@ -33,8 +33,12 @@ let g:instant_markdown_autostart=0
 let g:gruvbox_contrast_dark="hard"
 try
     let g:gruvbox_italic=1
+
     colorscheme gruvbox
+
     highlight Comment cterm=italic
+    highlight Normal guibg=NONE ctermbg=NONE
+
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
 endtry

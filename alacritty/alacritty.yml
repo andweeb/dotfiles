@@ -10,6 +10,9 @@ scrolling:
 # Draw bold text using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
+# Transparent background
+background_opacity: 0.98
+
 # Colors (Gruvbox dark)
 colors:
   primary:
