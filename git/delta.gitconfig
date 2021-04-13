@@ -1,0 +1,10 @@
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only --24-bit-color
+[include]
+    path = delta-theme.gitconfig
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+    features = schrodingers-cat
