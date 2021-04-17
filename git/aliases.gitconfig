@@ -1,7 +1,8 @@
 [alias]
     apply-patch = "apply --ignore-space-change --ignore-whitespace"
     cb = "rev-parse --abbrev-ref HEAD"
+    diffs = "diff --staged"
     l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     s = "status"
-    save-patch = "stash show -p --color=never > changes.patch"
+    show-stashed-changes = "stash show -p --color=never"
