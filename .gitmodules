@@ -9,9 +9,6 @@
 [submodule "asdf"]
 	path = packages/asdf
 	url = https://github.com/asdf-vm/asdf.git
-[submodule "packages/diff-so-fancy"]
-	path = packages/diff-so-fancy
-	url = https://github.com/so-fancy/diff-so-fancy.git
 [submodule "packages/fzf"]
 	path = packages/fzf
 	url = https://github.com/junegunn/fzf.git
