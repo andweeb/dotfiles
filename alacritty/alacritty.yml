@@ -45,10 +45,10 @@ colors:
 font:
   size: 14.0
   normal:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
     style: Medium
   bold:
-    family: Source Code Pro
+    family: SauceCodePro Nerd Font
   italic:
     family: Source Code Pro
     style: Light Italic

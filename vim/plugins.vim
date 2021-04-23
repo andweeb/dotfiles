@@ -22,15 +22,12 @@ Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'folke/lsp-trouble.nvim'
 
 " Language Support plugins
 Plug 'jparise/vim-graphql', { 'for': 'graphql' }
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
-Plug 'fatih/vim-go', {
-\   'for': 'go',
-\   'do': ':GoInstallBinaries'
-\ }
 Plug 'HerringtonDarkholme/yats.vim', {
 \   'for': ['typescript', 'typescriptreact']
 \ }
@@ -43,5 +40,6 @@ Plug 'MaxMEllon/vim-jsx-pretty', {
 
 " Funsies
 Plug 'andweeb/presence.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()

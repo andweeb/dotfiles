@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# install_brew: install homebrew and enable brew bundle command
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew tap Homebrew/bundle
