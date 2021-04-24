@@ -27,13 +27,6 @@ unsetopt CORRECT
 # Set italic terminfo
 export TERM=xterm-256color-italic
 
-# Utility options
-export GREP_OPTIONS='--color=always' # Grep options
-export LESS=mR                       # Less options
-
-# Update PATH with diff-so-fancy script
-export PATH="$PATH:$PKGDIR/diff-so-fancy"
-
 # Load asdf and load completions
 __load $PKGDIR/asdf/asdf.sh
 fpath=($ASDF_DIR/completions $fpath)
