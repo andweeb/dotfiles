@@ -250,16 +250,10 @@
     },
     "tap": {
       "homebrew/cask-fonts": {
-        "revision": "ea3b3f82daaa37aa6cf8d6c6bd170263cf2b093a"
+        "revision": "189d0f4a2c5e3732d35eb33ca9f9a32ab9e6286a"
       }
     },
     "cask": {
-      "font-source-code-pro": {
-        "version": "2.038R-ro-1.058R-it-1.018R-VAR",
-        "options": {
-          "full_name": "font-source-code-pro"
-        }
-      },
       "font-sauce-code-pro-nerd-font": {
         "version": "2.1.0",
         "options": {
@@ -271,9 +265,9 @@
   "system": {
     "macos": {
       "big_sur": {
-        "HOMEBREW_VERSION": "3.1.3-67-gafbe0e8",
+        "HOMEBREW_VERSION": "3.1.3-91-gfb7d19c",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "9347a8869aa66e82da5d26ba57d8921afe99580a",
+        "Homebrew/homebrew-core": "ce31f426d18eba2bc8eb1e25aac1700a1c1004f3",
         "CLT": "12.4.0.0.1.1610135815",
         "Xcode": "12.4",
         "macOS": "11.2.3"

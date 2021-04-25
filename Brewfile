@@ -9,7 +9,6 @@ brew 'lynx'
 brew 'tmux'
 brew 'tree'
 
-# Install Source Code Pro fonts
+# Install Sauce Code Pro
 tap 'homebrew/cask-fonts'
-cask 'font-source-code-pro'
 cask 'font-sauce-code-pro-nerd-font'

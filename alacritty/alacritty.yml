@@ -41,7 +41,7 @@ colors:
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
 
-# Font (Source Code Pro)
+# Font (Sauce Code Pro)
 font:
   size: 14.0
   normal:
@@ -50,8 +50,8 @@ font:
   bold:
     family: SauceCodePro Nerd Font
   italic:
-    family: Source Code Pro
-    style: Light Italic
+    family: SauceCodePro Nerd Font
+    style: ExtraLight Italic
 
 # Live config reload
 live_config_reload: true
