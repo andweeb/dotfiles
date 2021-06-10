@@ -31,12 +31,20 @@ export TERM=xterm-256color-italic
 __load $PKGDIR/asdf/asdf.sh
 fpath=($ASDF_DIR/completions $fpath)
 
-# Enable and configure zsh completions with fzf
-autoload -U compinit && compinit
+# Check cached .zcompdump only once a day
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit
+done
+compinit -C
+
+# Use menu-driven completion and color completion
 zstyle ':completion:*' menu select
 zstyle -e ':completion:*:default' \
     list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Enable and configure zsh completions with fzf
 __load $PKGDIR/fzf-tab/fzf-tab.plugin.zsh
 
 # Load local zsh config
