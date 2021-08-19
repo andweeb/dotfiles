@@ -45,6 +45,7 @@ endtry
 
 " LSP
 lua package.path = package.path..";"..vim.g.srcdir.."/?.lua"
+lua require("telescope")
 lua require("lsp")
 
 " Treesitter

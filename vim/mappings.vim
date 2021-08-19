@@ -29,7 +29,8 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "
 " (nvim-telescope/telescope.nvim)
-nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,-i,--hidden,--files,-g,!.git<CR>
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fF <cmd>lua require('telescope').extensions.frecency.frecency()<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fb <cmd>Telescope git_branches<cr>

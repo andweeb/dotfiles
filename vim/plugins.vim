@@ -15,7 +15,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'tami5/sql.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-frecency.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Linting and intellisense
 Plug 'dense-analysis/ale'
@@ -28,6 +31,7 @@ Plug 'folke/lsp-trouble.nvim'
 Plug 'jparise/vim-graphql', { 'for': 'graphql' }
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
+Plug 'jxnblk/vim-mdx-js', { 'for': 'mdx' }
 Plug 'HerringtonDarkholme/yats.vim', {
 \   'for': ['typescript', 'typescriptreact']
 \ }
