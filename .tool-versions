@@ -1,7 +1,7 @@
 lua 5.4.2
 golang 1.16.2
 nodejs 15.14.0
-neovim nightly
+neovim 0.5.1
 fd 8.2.1
 bat 0.18.0
 ripgrep 12.1.1
