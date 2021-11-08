@@ -1,5 +1,4 @@
 local lspconfig = require("lspconfig")
-local completion = require("completion")
 
 -- LSP trouble
 require("trouble").setup({})
@@ -8,7 +7,26 @@ vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>LspTroubleToggle<cr>", {
     noremap = true
 })
 
-local function on_attach(client, bufnr)
+-- Setup LSP completion via nvim-cmp.
+local cmp = require('cmp')
+local cmpLsp = require('cmp_nvim_lsp')
+local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+cmp.setup({
+    mapping = {
+        ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<C-e>'] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = cmp.config.sources({ { name = 'nvim_lsp' } }, { { name = 'buffer' } })
+})
+
+local function on_attach(_, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -28,8 +46,6 @@ local function on_attach(client, bufnr)
     buf_set_keymap("n", "<space>gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
     buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
     buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-
-    completion.on_attach(client, bufnr)
 end
 
 -- Lua
@@ -40,6 +56,7 @@ local sumneko_bin = sumneko_root_path.."/bin/macOS/lua-language-server"
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
     cmd = { sumneko_bin, "-E", sumneko_root_path.."/main.lua" },
+    capabilities = capabilities,
     settings = {
         Lua = {
             diagnostics = {
@@ -52,25 +69,36 @@ lspconfig.sumneko_lua.setup {
 -- Flow
 lspconfig.flow.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 -- Go
 lspconfig.gopls.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 -- TypeScript
 lspconfig.tsserver.setup {
     on_attach = on_attach,
-    filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    capabilities = capabilities,
 }
 
 -- CSS
 lspconfig.cssls.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
 }
 
 -- Vue
 lspconfig.vuels.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+-- Deno
+lspconfig.denols.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
