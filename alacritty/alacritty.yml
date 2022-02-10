@@ -3,15 +3,15 @@
 window:
   decorations: none
 
+  # Transparent background
+  opacity: 0.98
+
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   history: 100000
 
 # Draw bold text using the bright color variants.
 draw_bold_text_with_bright_colors: true
-
-# Transparent background
-background_opacity: 0.98
 
 # Colors (Gruvbox dark)
 colors:
