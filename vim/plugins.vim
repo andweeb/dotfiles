@@ -19,6 +19,11 @@ Plug 'tami5/sql.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'wellle/targets.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'sgur/vim-textobj-parameter'
+Plug 'AckslD/nvim-revJ.lua'
 
 " Linting and intellisense
 Plug 'dense-analysis/ale'
@@ -30,12 +35,15 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/lsp-trouble.nvim'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 " Language Support plugins
-Plug 'jparise/vim-graphql', { 'for': 'graphql' }
-Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'jparise/vim-graphql', { 'for': 'graphql' }
 Plug 'jxnblk/vim-mdx-js', { 'for': 'mdx' }
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'HerringtonDarkholme/yats.vim', {
 \   'for': ['typescript', 'typescriptreact']
 \ }

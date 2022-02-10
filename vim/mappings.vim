@@ -33,7 +33,8 @@ nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fF <cmd>lua require('telescope').extensions.frecency.frecency()<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fb <cmd>Telescope git_branches<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fB <cmd>Telescope git_branches<cr>
 nnoremap <leader>fc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fs <cmd>Telescope git_status<cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
@@ -50,7 +51,6 @@ au FileType go nmap <leader>gdc <Plug>(go-doc)
 " (junegunn/vim-easy-align)
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-"
 " Align visually selected block of Ki shortcut items
 xnoremap <leader>tk
     \ :norm ^r,$F D<CR>

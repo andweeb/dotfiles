@@ -1,5 +1,14 @@
 local lspconfig = require("lspconfig")
 
+-- RevJ
+require("revj").setup{
+    keymaps = {
+        operator = '<Leader>J',
+        line = '<Leader>j',
+        visual = '<Leader>j',
+    },
+}
+
 -- LSP trouble
 require("trouble").setup({})
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>LspTroubleToggle<cr>", {
@@ -7,11 +16,16 @@ vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>LspTroubleToggle<cr>", {
     noremap = true
 })
 
--- Setup LSP completion via nvim-cmp.
+-- Setup LSP completion via nvim-cmp with luasnip
 local cmp = require('cmp')
 local cmpLsp = require('cmp_nvim_lsp')
 local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
     mapping = {
         ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
         ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -52,7 +66,6 @@ end
 local lsp_install_path = vim.fn.stdpath("cache").."/lspconfig"
 local sumneko_root_path = lsp_install_path.."/sumneko_lua/lua-language-server"
 local sumneko_bin = sumneko_root_path.."/bin/macOS/lua-language-server"
-
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
     cmd = { sumneko_bin, "-E", sumneko_root_path.."/main.lua" },
@@ -81,7 +94,7 @@ lspconfig.gopls.setup {
 -- TypeScript
 lspconfig.tsserver.setup {
     on_attach = on_attach,
-    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
     capabilities = capabilities,
 }
 
@@ -101,4 +114,16 @@ lspconfig.vuels.setup {
 lspconfig.denols.setup {
     on_attach = on_attach,
     capabilities = capabilities,
+}
+
+-- JSON
+lspconfig.jsonls.setup {
+    on_attach = on_attach,
+    commands = {
+        Format = {
+            function()
+                vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+            end
+        }
+    }
 }
