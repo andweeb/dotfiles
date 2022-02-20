@@ -43,6 +43,7 @@ catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
 endtry
 
+" Allow importing Lua source files from vim folder
 lua package.path = package.path..";"..vim.g.srcdir.."/?.lua"
 
 " LSP
@@ -51,6 +52,9 @@ lua require("lsp")
 
 " Toggleterm
 lua require("term")
+
+" Zen Mode
+lua require("zen-mode").setup({})
 
 " Treesitter
 lua <<EOF
@@ -95,4 +99,3 @@ function goimports(timeout_ms)
 end
 EOF
 autocmd BufWritePre *.go lua goimports(1000)
-

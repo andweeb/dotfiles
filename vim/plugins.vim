@@ -19,12 +19,12 @@ Plug 'tami5/sql.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'AckslD/nvim-revJ.lua'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'folke/zen-mode.nvim'
 
 " Linting and intellisense
 Plug 'dense-analysis/ale'
@@ -60,3 +60,30 @@ Plug 'andweeb/presence.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
+
+" Disable any unused built-in plugins
+lua <<EOF
+local disabled_built_ins = {
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "gzip",
+    "zip",
+    "zipPlugin",
+    "tar",
+    "tarPlugin",
+    "getscript",
+    "getscriptPlugin",
+    "vimball",
+    "vimballPlugin",
+    "2html_plugin",
+    "logipat",
+    "rrhelper",
+    "spellfile_plugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+    vim.g["loaded_" .. plugin] = 1
+end
+EOF
