@@ -24,6 +24,7 @@ Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'AckslD/nvim-revJ.lua'
+Plug 'akinsho/toggleterm.nvim'
 
 " Linting and intellisense
 Plug 'dense-analysis/ale'

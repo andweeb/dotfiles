@@ -43,10 +43,14 @@ catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
 endtry
 
-" LSP
 lua package.path = package.path..";"..vim.g.srcdir.."/?.lua"
+
+" LSP
 lua require("telescope")
 lua require("lsp")
+
+" Toggleterm
+lua require("term")
 
 " Treesitter
 lua <<EOF
