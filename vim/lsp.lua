@@ -1,20 +1,5 @@
 local lspconfig = require("lspconfig")
-
--- RevJ
-require("revj").setup{
-    keymaps = {
-        operator = '<Leader>J',
-        line = '<Leader>j',
-        visual = '<Leader>j',
-    },
-}
-
--- LSP trouble
-require("trouble").setup({})
-vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>LspTroubleToggle<cr>", {
-    silent = true,
-    noremap = true
-})
+local lsp_install_path = vim.fn.stdpath("data").."/lsp_servers"
 
 -- Setup LSP completion via nvim-cmp with luasnip
 local cmp = require('cmp')
@@ -63,12 +48,12 @@ local function on_attach(_, bufnr)
 end
 
 -- Lua
-local lsp_install_path = vim.fn.stdpath("cache").."/lspconfig"
-local sumneko_root_path = lsp_install_path.."/sumneko_lua/lua-language-server"
-local sumneko_bin = sumneko_root_path.."/bin/macOS/lua-language-server"
+local sumneko_bin_path = lsp_install_path.."/sumneko_lua/extension/server/bin"
+local server_bin = sumneko_bin_path.."/lua-language-server"
+local main_lua = sumneko_bin_path.."/main.lua"
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
-    cmd = { sumneko_bin, "-E", sumneko_root_path.."/main.lua" },
+    cmd = { server_bin, "-E", main_lua },
     capabilities = capabilities,
     settings = {
         Lua = {

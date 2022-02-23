@@ -66,6 +66,17 @@ treesitter.setup {
 }
 EOF
 
+" RevJ
+lua <<EOF
+require("revj").setup{
+    keymaps = {
+        operator = '<Leader>J',
+        line = '<Leader>j',
+        visual = '<Leader>j',
+    },
+}
+EOF
+
 " Function and autocmd to update Go import block
 lua <<EOF
 function goimports(timeout_ms) 

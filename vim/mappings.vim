@@ -8,8 +8,8 @@ map <leader>pwd :echo expand('%:p')<CR>
 " LSP Diagnostic and ALE error navigation
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-map <leader>n :lua vim.lsp.diagnostic.goto_next()<CR>
-map <leader>p :lua vim.lsp.diagnostic.goto_prev()<CR>
+map <leader>n :lua vim.diagnostic.goto_next()<CR>
+map <leader>p :lua vim.diagnostic.goto_prev()<CR>
 
 " No arrow keys :)
 map <up> <nop>
