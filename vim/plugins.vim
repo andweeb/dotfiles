@@ -23,7 +23,7 @@ Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'AckslD/nvim-revJ.lua'
-Plug 'akinsho/toggleterm.nvim'
+Plug 'akinsho/toggleterm.nvim', { 'commit': '981e207e17ecd8bf065b5b9201c1d6d2395e9338' }
 Plug 'folke/zen-mode.nvim'
 
 " Linting and intellisense

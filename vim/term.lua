@@ -30,26 +30,26 @@ toggleterm.setup({
 -- * explicitly map with defined mappings
 -- * override the toggle command to enable toggling out
 _G.toggles = {
+    ["ts-node"] = {
+        mapping = "<C-t>",
+    },
     node = {
         mapping = "<C-n>",
-        terminal = nil,
     },
     nvim = {
         mapping = "<leader>v",
-        terminal = nil,
     },
 }
 
 -- Set buffer-specific keymaps depending on the process
 function _G.set_terminal_keymaps()
-    local opts = { noremap = true }
+    local opts = { noremap = true, silent = true }
 
     -- Parse the command from buffer name
     local current_buf = vim.api.nvim_get_current_buf()
     local buf_name = vim.api.nvim_buf_get_name(current_buf)
     local cmd = buf_name:match("term://.*:(.*);.*")
     local process = _G.toggles[cmd]
-
 
     -- Override any process toggle command mappings in terminal mode to allow toggling out
     if process then
