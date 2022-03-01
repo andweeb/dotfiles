@@ -1,6 +1,9 @@
 local toggleterm = require("toggleterm")
 local Terminal = require("toggleterm.terminal").Terminal
 
+-- Global terminal toggles
+Toggles = {}
+
 -- Setup toggleterm
 toggleterm.setup({
     size = 20,
@@ -26,7 +29,24 @@ toggleterm.setup({
     },
 })
 
-local function createWorkspace(dirpath, startfile, commands)
+-- Toggle mappings keyed by command name
+Toggles.hs = { mapping = "<leader><C-h>" }      --  Hammerspoon CLI
+Toggles.croissant = { mapping = "<leader>c" }   --  Croissant Lua REPL
+Toggles.deno = { mapping = "<leader>d" }        --  Deno REPL
+Toggles.gore = { mapping = "<leader>g", }       --  Go REPL
+Toggles.lua = { mapping = "<leader>l" }         --  Lua REPL
+Toggles.node = { mapping = "<leader>n" }        --  Node REPL
+Toggles.nvim = { mapping = "<leader>v" }        --  Neovim in Neovim :)
+Toggles.python2 = { mapping = "<leader>p" }     --  Python 3 REPL
+Toggles["ts-node"] = { mapping = "<leader>t" }  --  TypeScript REPL
+Toggles.lazygit = { mapping = "<leader><C-l>" } --  lazygit
+Toggles.grip = {                                --  Grip
+    mapping = "<leader><C-g>",
+    command = "grip --browser"
+}
+
+-- Create an ephemeral workspace
+function Toggles.createWorkspace(dirpath, startfile, commands)
     return function(terminal)
         -- Exit if workspace is already initialized
         if terminal.initialized then
@@ -74,93 +94,51 @@ local function createWorkspace(dirpath, startfile, commands)
     end
 end
 
--- Terminal process toggle mappings keyed by command, used to:
--- * explicitly map with defined mappings
--- * override the toggle command to enable toggling out
-_G.toggles = {
-    -- Hammerspoon CLI
-    hs = {
-        mapping = "<leader><C-h>",
+-- Workspace toggle initialized with optional npm packages
+Toggles["node-workspace"] = {
+    mapping = "<leader>N",
+    options = {
+        cmd = "zsh",
+        on_open = Toggles.createWorkspace("~/Code/playground/javascript/temp", "index.js", {
+            "npm init -y",
+            prompt = {
+                text = "Which NPM packages should we include? ",
+                default = "lodash",
+                command = "npm i",
+            }
+        }),
     },
-    -- Deno REPL
-    deno = {
-        mapping = "<leader>d",
-    },
-    -- Grip
-    grip = {
-        mapping = "<leader><C-g>",
-        command = "grip --browser",
-    },
-    -- Go REPL
-    gore = {
-        mapping = "<leader>g",
-    },
-    -- Lua REPL
-    lua = {
-        mapping = "<leader>l",
-    },
-    -- Node REPL
-    node = {
-        mapping = "<leader>n",
-    },
-    -- Workspace initialized with optional npm packages
-    ["node-workspace"] = {
-        mapping = "<leader>N",
-        options = {
-            cmd = "zsh",
-            on_open = createWorkspace("~/Code/playground/javascript/temp", "index.js", {
-                "npm init -y",
-                prompt = {
-                    text = "Which NPM packages should we include? ",
-                    default = "lodash",
-                    command = "npm i",
-                }
-            }),
-        },
-    },
-    -- Neovim in Neovim :)
-    nvim = {
-        mapping = "<leader>v",
-    },
-    -- Python 3 REPL
-    python3 = {
-        mapping = "<leader>p",
-    },
-    -- TypeScript REPL
-    ["ts-node"] = {
-        mapping = "<leader>t",
-    },
-    -- Workspace initialized with TypeScript, ts-node, and optional npm packages
-    ["ts-node-workspace"] = {
-        mapping = "<leader>T",
-        options = {
-            cmd = "zsh",
-            on_open = createWorkspace("~/Code/playground/typescript/temp", "index.ts", {
-                "npm init -y",
-                "npx tsc --init",
-                prompt = {
-                    text = "Which NPM packages should we include? ",
-                    default = "typescript ts-node lodash",
-                    command = "npm i",
-                }
-            }),
-        },
+}
+-- Workspace toggle initialized with TypeScript, ts-node, and optional npm packages
+Toggles["ts-node-workspace"] = {
+    mapping = "<leader>T",
+    options = {
+        cmd = "zsh",
+        on_open = Toggles.createWorkspace("~/Code/playground/typescript/temp", "index.ts", {
+            "npm init -y",
+            "npx tsc --init",
+            prompt = {
+                text = "Which NPM packages should we include? ",
+                default = "typescript ts-node lodash",
+                command = "npm i",
+            }
+        }),
     },
 }
 
 -- Set buffer-specific keymaps depending on the process
-function _G.set_terminal_keymaps()
+function Toggles:set_terminal_keymaps()
     local opts = { noremap = true, silent = true }
 
     -- Parse the command from buffer name
     local current_buf = vim.api.nvim_get_current_buf()
     local buf_name = vim.api.nvim_buf_get_name(current_buf)
     local name = buf_name:match("term://.*:(.*);.*")
-    local process = _G.toggles[name]
+    local process = self[name]
 
     -- Override any process toggle command mappings in terminal mode to allow toggling out
     if process then
-        local toggle_cmd = string.format([[<cmd>lua toggle_terminal_process("%s")<CR>]], name)
+        local toggle_cmd = string.format([[<cmd>lua Toggles:toggle_terminal_process("%s")<CR>]], name)
         vim.api.nvim_buf_set_keymap(0, "t", process.mapping, toggle_cmd, opts)
     end
 
@@ -169,8 +147,8 @@ function _G.set_terminal_keymaps()
 end
 
 -- Toggle a terminal process by the command name
-function _G.toggle_terminal_process(cmd)
-    local process = _G.toggles[cmd]
+function Toggles:toggle_terminal_process(cmd)
+    local process = self[cmd]
     if not process or not process.terminal then
         print(string.format("Unable to toggle unexpected terminal process: %s", cmd))
         return
@@ -180,7 +158,11 @@ function _G.toggle_terminal_process(cmd)
 end
 
 -- Add mappings for various terminal process toggles
-for name, process in pairs(_G.toggles) do
+for name, process in pairs(Toggles) do
+    if type(process) == "function" then
+        goto continue
+    end
+
     local cmd = process.command or name
     local options = {
         cmd = cmd,
@@ -196,9 +178,11 @@ for name, process in pairs(_G.toggles) do
 
     process.terminal = Terminal:new(options)
 
-    local handler = string.format([[<cmd>lua toggle_terminal_process("%s")<CR>]], name)
+    local handler = string.format([[<cmd>lua Toggles:toggle_terminal_process("%s")<CR>]], name)
     vim.api.nvim_set_keymap("n", process.mapping, handler, { noremap = true, silent = true })
+
+    ::continue::
 end
 
 -- Apply mappings for the terminal
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+vim.cmd("autocmd! TermOpen term://* lua Toggles:set_terminal_keymaps()")
