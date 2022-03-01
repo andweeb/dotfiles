@@ -5,6 +5,11 @@ call plug#begin(stdpath('data') . '/plugged')
 " Colorscheme
 Plug 'morhetz/gruvbox'
 
+" Aesthetics
+Plug 'andweeb/presence.nvim'
+Plug 'folke/zen-mode.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+
 " Remap plugins
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -23,8 +28,7 @@ Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'AckslD/nvim-revJ.lua'
-Plug 'akinsho/toggleterm.nvim', { 'commit': '981e207e17ecd8bf065b5b9201c1d6d2395e9338' }
-Plug 'folke/zen-mode.nvim'
+Plug 'akinsho/toggleterm.nvim'
 
 " Linting and intellisense
 Plug 'dense-analysis/ale'
@@ -54,10 +58,6 @@ Plug 'pangloss/vim-javascript', {
 Plug 'MaxMEllon/vim-jsx-pretty', {
 \   'for': ['javascript', 'javascriptreact']
 \ }
-
-" Funsies
-Plug 'andweeb/presence.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
