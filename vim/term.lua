@@ -32,7 +32,6 @@ toggleterm.setup({
 -- Toggle mappings keyed by command name
 Toggles.hs = { mapping = "<leader><C-h>" }      --  Hammerspoon CLI
 Toggles.croissant = { mapping = "<leader>c" }   --  Croissant Lua REPL
-Toggles.deno = { mapping = "<leader>d" }        --  Deno REPL
 Toggles.gore = { mapping = "<leader>g", }       --  Go REPL
 Toggles.lua = { mapping = "<leader>l" }         --  Lua REPL
 Toggles.node = { mapping = "<leader>n" }        --  Node REPL

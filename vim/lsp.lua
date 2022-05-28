@@ -1,6 +1,37 @@
 local lspconfig = require("lspconfig")
 local lsp_install_path = vim.fn.stdpath("data").."/lsp_servers"
 
+-- Nvim DAP
+local dap = require("dap")
+local widgets = require("dap.ui.widgets")
+
+dap.adapters.node2 = {
+  type = "executable",
+  command = "node",
+  args = { os.getenv("HOME") .. "/Code/vscode-node-debug2/out/src/nodeDebug.js" },
+}
+
+dap.defaults.fallback.terminal_win_cmd = "20split new"
+vim.fn.sign_define("DapBreakpoint", { text="🔴", texthl="", linehl="", numhl="" })
+vim.fn.sign_define("DapBreakpointRejected", { text="❌", texthl="", linehl="", numhl="" })
+vim.fn.sign_define("DapStopped", { text="👉", texthl="", linehl="", numhl="" })
+
+vim.keymap.set("n", "<leader>d?", function() widgets.centered_float(widgets.scopes) end)
+vim.keymap.set("n", "<leader>dH", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
+vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>dsO", dap.step_out)
+vim.keymap.set("n", "<leader>dsi", dap.step_into)
+vim.keymap.set("n", "<leader>dso", dap.step_over)
+vim.keymap.set("n", "<leader>dc", dap.continue)
+vim.keymap.set("n", "<leader>dn", dap.run_to_cursor)
+vim.keymap.set("n", "<leader>dt", dap.terminate)
+vim.keymap.set("n", "<leader>dR", dap.clear_breakpoints)
+vim.keymap.set("n", "<leader>de", dap.set_exception_breakpoints)
+vim.keymap.set("n", "<leader>di", widgets.hover)
+vim.keymap.set("n", "<leader>dk", ':lua require"dap".up()<CR>zz')
+vim.keymap.set("n", "<leader>dj", ':lua require"dap".down()<CR>zz')
+vim.keymap.set("n", "<leader>dr", ':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
+
 -- Setup LSP completion via nvim-cmp with luasnip
 local cmp = require('cmp')
 local cmpLsp = require('cmp_nvim_lsp')
@@ -91,12 +122,6 @@ lspconfig.cssls.setup {
 
 -- Vue
 lspconfig.vuels.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
--- Deno
-lspconfig.denols.setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }

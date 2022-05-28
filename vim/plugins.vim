@@ -29,6 +29,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'AckslD/nvim-revJ.lua'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'mfussenegger/nvim-dap'
 
 " Linting and intellisense
 Plug 'dense-analysis/ale'

@@ -10,6 +10,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 map <C-j> :lua vim.diagnostic.goto_next()<CR>
 map <C-k> :lua vim.diagnostic.goto_prev()<CR>
+map <leader>at :ALEToggle<CR>
 
 " No arrow keys :)
 map <up> <nop>
@@ -41,11 +42,11 @@ nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 "
 " (fatih/vim-go)
 au FileType go nmap <leader>gf <Plug>(go-def)
-au FileType go nmap <Leader>gi <Plug>(go-info)
+au FileType go nmap <leader>gi <Plug>(go-info)
 au FileType go nmap <leader>gb <Plug>(go-build)
 au FileType go nmap <leader>gr <Plug>(go-run-tab)
-au FileType go nmap <Leader>gs <Plug>(go-implements)
-au FileType go nmap <Leader>gdb <Plug>(go-doc-browser)
+au FileType go nmap <leader>gs <Plug>(go-implements)
+au FileType go nmap <leader>gdb <Plug>(go-doc-browser)
 au FileType go nmap <leader>gdc <Plug>(go-doc)
 "
 " (junegunn/vim-easy-align)
