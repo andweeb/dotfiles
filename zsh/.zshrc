@@ -26,6 +26,7 @@ unsetopt CORRECT
 
 # Set italic terminfo
 export TERM=xterm-256color-italic
+export EDITOR=nvim
 
 # Load asdf and load completions
 __load $PKGDIR/asdf/asdf.sh
