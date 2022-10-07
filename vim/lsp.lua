@@ -1,41 +1,77 @@
 local lspconfig = require("lspconfig")
-local lsp_install_path = vim.fn.stdpath("data").."/lsp_servers"
+local lsp_install_path = vim.fn.stdpath("data").."/mason/bin"
+
+require("mason").setup()
 
 -- Nvim DAP
 local dap = require("dap")
+local dap_utils = require("dap.utils")
 local widgets = require("dap.ui.widgets")
 
-dap.adapters.node2 = {
-  type = "executable",
-  command = "node",
-  args = { os.getenv("HOME") .. "/Code/vscode-node-debug2/out/src/nodeDebug.js" },
+-- Nvim DAP UI
+require("dapui").setup()
+
+-- Processes must be running in debug/inspect mode (e.g. `--inspect` flag for node)
+local function create_process_attacher(type)
+    return {
+        name = string.format('Attach to %s process', type),
+        type = type,
+        request = 'attach',
+        processId = dap_utils.pick_process,
+    }
+end
+local node_launcher = {
+    name = "Launch node",
+    type = "node2",
+    request = "launch",
+    program = "${file}",
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = "inspector",
+    console = "integratedTerminal",
 }
+
+dap.adapters.node2 = {
+    type = "executable",
+    command = "node",
+    args = { os.getenv("HOME") .. "/Code/vscode-node-debug2/out/src/nodeDebug.js" },
+}
+dap.configurations.javascript = {
+    node_launcher,
+    create_process_attacher("node2"),
+}
+dap.configurations.typescript = { node_launcher, create_process_attacher("node2") }
 
 dap.defaults.fallback.terminal_win_cmd = "20split new"
 vim.fn.sign_define("DapBreakpoint", { text="🔴", texthl="", linehl="", numhl="" })
 vim.fn.sign_define("DapBreakpointRejected", { text="❌", texthl="", linehl="", numhl="" })
 vim.fn.sign_define("DapStopped", { text="👉", texthl="", linehl="", numhl="" })
 
+-- DAP Mappings
+vim.keymap.set("n", "<leader>dc", dap.continue)
 vim.keymap.set("n", "<leader>d?", function() widgets.centered_float(widgets.scopes) end)
 vim.keymap.set("n", "<leader>dH", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
 vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
 vim.keymap.set("n", "<leader>dsO", dap.step_out)
 vim.keymap.set("n", "<leader>dsi", dap.step_into)
 vim.keymap.set("n", "<leader>dso", dap.step_over)
-vim.keymap.set("n", "<leader>dc", dap.continue)
 vim.keymap.set("n", "<leader>dn", dap.run_to_cursor)
 vim.keymap.set("n", "<leader>dt", dap.terminate)
 vim.keymap.set("n", "<leader>dR", dap.clear_breakpoints)
 vim.keymap.set("n", "<leader>de", dap.set_exception_breakpoints)
 vim.keymap.set("n", "<leader>di", widgets.hover)
-vim.keymap.set("n", "<leader>dk", ':lua require"dap".up()<CR>zz')
-vim.keymap.set("n", "<leader>dj", ':lua require"dap".down()<CR>zz')
-vim.keymap.set("n", "<leader>dr", ':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
+vim.keymap.set("n", "<leader>dk", ':lua require("dap").up()<CR>zz')
+vim.keymap.set("n", "<leader>dj", ':lua require("dap").down()<CR>zz')
+vim.keymap.set("n", "<leader>dr", ':lua require("dap").repl.toggle({}, "vsplit")<CR><C-w>l')
+-- vim.keymap.set("n", "<leader>dr", function() widgets.centered_float(widgets.repl) end)
+
+-- DAP UI Mappings
+vim.keymap.set("n", "<leader>du", ':lua require("dapui").toggle()<CR>')
 
 -- Setup LSP completion via nvim-cmp with luasnip
 local cmp = require('cmp')
-local cmpLsp = require('cmp_nvim_lsp')
-local capabilities = cmpLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local cmp_lsp = require('cmp_nvim_lsp')
+local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -138,4 +174,10 @@ lspconfig.jsonls.setup {
             end
         }
     }
+}
+
+-- Python
+lspconfig.pyright.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
