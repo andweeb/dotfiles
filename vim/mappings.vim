@@ -6,10 +6,10 @@ map <leader>h :noh<CR>
 map <leader>pwd :echo expand('%:p')<CR>
 
 " LSP Diagnostic and ALE error navigation
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-map <C-j> :lua vim.diagnostic.goto_next()<CR>
-map <C-k> :lua vim.diagnostic.goto_prev()<CR>
+" nmap <silent> <C-S-n> <Plug>(ale_next_wrap)
+" nmap <silent> <C-S-p> <Plug>(ale_previous_wrap)
+map <C-n> :lua vim.diagnostic.goto_next()<CR>
+map <C-p> :lua vim.diagnostic.goto_prev()<CR>
 map <leader>at :ALEToggle<CR>
 
 " No arrow keys :)

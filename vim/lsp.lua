@@ -1,5 +1,4 @@
 local lspconfig = require("lspconfig")
-local lsp_install_path = vim.fn.stdpath("data").."/mason/bin"
 
 require("mason").setup()
 
@@ -71,7 +70,7 @@ vim.keymap.set("n", "<leader>du", ':lua require("dapui").toggle()<CR>')
 -- Setup LSP completion via nvim-cmp with luasnip
 local cmp = require('cmp')
 local cmp_lsp = require('cmp_nvim_lsp')
-local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -117,6 +116,7 @@ local function on_attach(_, bufnr)
 end
 
 -- Lua
+local lsp_install_path = vim.fn.stdpath("data").."/mason/bin"
 local sumneko_bin_path = lsp_install_path.."/sumneko_lua/extension/server/bin"
 local server_bin = sumneko_bin_path.."/lua-language-server"
 local main_lua = sumneko_bin_path.."/main.lua"
