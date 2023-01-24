@@ -116,8 +116,8 @@ local function on_attach(_, bufnr)
 end
 
 -- Lua
-local lsp_install_path = vim.fn.stdpath("data").."/mason/bin"
-local sumneko_bin_path = lsp_install_path.."/sumneko_lua/extension/server/bin"
+local lsp_install_path = vim.fn.stdpath("data").."/mason/packages"
+local sumneko_bin_path = lsp_install_path.."/lua-language-server/extension/server/bin"
 local server_bin = sumneko_bin_path.."/lua-language-server"
 local main_lua = sumneko_bin_path.."/main.lua"
 lspconfig.sumneko_lua.setup {
