@@ -49,6 +49,9 @@ au FileType go nmap <leader>gs <Plug>(go-implements)
 au FileType go nmap <leader>gdb <Plug>(go-doc-browser)
 au FileType go nmap <leader>gdc <Plug>(go-doc)
 "
+" (Eandrju/cellular-automaton.nvim)
+nmap <leader>fml <cmd>CellularAutomaton make_it_rain<CR>
+"
 " (junegunn/vim-easy-align)
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)

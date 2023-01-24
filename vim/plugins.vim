@@ -9,6 +9,7 @@ Plug 'morhetz/gruvbox'
 Plug 'andweeb/presence.nvim'
 Plug 'folke/zen-mode.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'eandrju/cellular-automaton.nvim'
 
 " Remap plugins
 Plug 'tpope/vim-repeat'
