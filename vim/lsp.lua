@@ -117,10 +117,10 @@ end
 
 -- Lua
 local lsp_install_path = vim.fn.stdpath("data").."/mason/packages"
-local sumneko_bin_path = lsp_install_path.."/lua-language-server/extension/server/bin"
+local sumneko_bin_path = lsp_install_path.."/lua-language-server/bin"
 local server_bin = sumneko_bin_path.."/lua-language-server"
 local main_lua = sumneko_bin_path.."/main.lua"
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
     on_attach = on_attach,
     cmd = { server_bin, "-E", main_lua },
     capabilities = capabilities,
