@@ -60,8 +60,17 @@ lua require("zen-mode").setup({})
 lua <<EOF
 local treesitter = require('nvim-treesitter.configs')
 treesitter.setup {
+    ensure_installed = {
+      "astro",
+      "typescript",
+      "tsx",
+      "css",
+      "html",
+      "javascript",
+    },
     highlight = {
-        enable = true,
+      enable = true,
+      additional_vim_regex_highlighting = false,
     },
 }
 EOF
@@ -110,3 +119,8 @@ function goimports(timeout_ms)
 end
 EOF
 autocmd BufWritePre *.go lua goimports(1000)
+
+lua <<EOF
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+EOF

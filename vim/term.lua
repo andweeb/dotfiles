@@ -36,7 +36,7 @@ Toggles.gore = { mapping = "<leader>g", }       --  Go REPL
 Toggles.lua = { mapping = "<leader>l" }         --  Lua REPL
 Toggles.node = { mapping = "<leader>n" }        --  Node REPL
 Toggles.nvim = { mapping = "<leader>v" }        --  Neovim in Neovim :)
-Toggles.python2 = { mapping = "<leader>p" }     --  Python 3 REPL
+Toggles.python3 = { mapping = "<leader>p" }     --  Python 3 REPL
 Toggles["ts-node"] = { mapping = "<leader>t" }  --  TypeScript REPL
 Toggles.lazygit = { mapping = "<leader><C-l>" } --  lazygit
 Toggles.grip = {                                --  Grip

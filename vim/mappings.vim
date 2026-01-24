@@ -5,9 +5,31 @@ let mapleader=" "
 map <leader>h :noh<CR>
 map <leader>pwd :echo expand('%:p')<CR>
 
+" Make window navigation consistent everywhere
+" Normal mode: use Ctrl-h/j/k/l to move between splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Terminal mode: first jump to Normal, then move
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+
+" Quick way to leave Terminal insert-mode
+tnoremap <Esc> <C-\><C-n>
+
+" When opening terminal buffers, start in insert mode
+augroup BetterTerm
+  autocmd!
+  autocmd TermOpen * startinsert
+  " Optional: hide line numbers in terminals
+  autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
 " LSP Diagnostic and ALE error navigation
-" nmap <silent> <C-S-n> <Plug>(ale_next_wrap)
-" nmap <silent> <C-S-p> <Plug>(ale_previous_wrap)
 map <C-n> :lua vim.diagnostic.goto_next()<CR>
 map <C-p> :lua vim.diagnostic.goto_prev()<CR>
 map <leader>at :ALEToggle<CR>
@@ -23,11 +45,6 @@ imap <left> <nop>
 imap <right> <nop>
 
 " Plugin mappings
-"
-" (nvim-lua/completion-nvim)
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "
 " (nvim-telescope/telescope.nvim)
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
@@ -61,3 +78,15 @@ xnoremap <leader>tk
     \ gv:EasyAlign **/,\%([^{(]*[})]\)\@!/ {'a': 'cllll' }<CR>
     \ gv:norm ^r{A },<CR>
     \ gv:EasyAlign -}<CR>
+
+" Keybindings for Claude Code
+nnoremap <leader>a :ClaudeCode<CR>
+nnoremap <leader>af :ClaudeCodeFocus<CR>
+nnoremap <leader>ar :ClaudeCode --resume<CR>
+nnoremap <leader>aC :ClaudeCode --continue<CR>
+nnoremap <leader>am :ClaudeCodeSelectModel<CR>
+nnoremap <leader>ab :ClaudeCodeAdd %<CR>
+vnoremap <leader>as :ClaudeCodeSend<CR>
+nnoremap <leader>as :ClaudeCodeTreeAdd<CR>
+nnoremap <leader>aa :ClaudeCodeDiffAccept<CR>
+nnoremap <leader>ad :ClaudeCodeDiffDeny<CR>

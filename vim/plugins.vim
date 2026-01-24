@@ -6,9 +6,9 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'morhetz/gruvbox'
 
 " Aesthetics
-Plug 'andweeb/presence.nvim'
+" Plug 'andweeb/presence.nvim'
 Plug 'folke/zen-mode.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'eandrju/cellular-automaton.nvim'
 
 " Remap plugins
@@ -30,15 +30,22 @@ Plug 'kana/vim-textobj-user'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'AckslD/nvim-revJ.lua'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'andweeb/openingh.nvim'
+Plug 'github/copilot.vim'
+Plug 'folke/snacks.nvim' " For claudecode.nvim (modern input UI)
+
+" AI
+Plug 'coder/claudecode.nvim'
 
 " Debug Adapter Protocol
+Plug 'nvim-neotest/nvim-nio'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 
 " Linting and intellisense
-Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -91,4 +98,8 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end
+
+-- Avante
+require('claudecode').setup()
 EOF
+
