@@ -2,8 +2,8 @@
 
 SHELL = bash
 TAG = andrew.dotfile
-XDG_FILES = alacritty bat git kitty
-HOME_FILES = .vimrc .tmux.conf .hammerspoon
+XDG_FILES = bat ghostty git
+HOME_FILES = .vimrc .tmux.conf
 ZSH = $(notdir $(wildcard $(CURDIR)/zsh/.*zsh*))
 XDG_CONFIG_DIR = $(if $(XDG_CONFIG_HOME), $(XDG_CONFIG_HOME), $(HOME)/.config)
 

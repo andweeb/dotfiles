@@ -1,0 +1,6 @@
+font-family = "SauceCodePro Nerd Font"
+font-thicken = true
+window-decoration = false
+
+keybind = global:cmd+.=toggle_quick_terminal
+clipboard-paste-protection = false
