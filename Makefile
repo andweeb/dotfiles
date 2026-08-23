@@ -12,7 +12,7 @@ define symlink
 	@-ln -shiF $(1) $(2) && xattr -ws $(TAG) true $(2)
 endef
 
-link: link-home link-xdg
+link: link-home link-xdg link-claude
 
 # Link all dotfiles
 link-home: $(foreach f, $(ZSH) $(HOME_FILES), link-home-$(f))
@@ -31,6 +31,13 @@ $(XDG_CONFIG_DIR):
 link-xdg: $(XDG_CONFIG_DIR) $(foreach f, $(XDG_FILES), link-xdg-$(f))
 link-xdg-%: %
 	$(call symlink, $(CURDIR)/$<, $(XDG_CONFIG_DIR)/$<)
+
+# Link Claude Code skills into ~/.claude
+CLAUDE_DIR = $(HOME)/.claude
+$(CLAUDE_DIR):
+	mkdir -p $(CLAUDE_DIR)
+link-claude: $(CLAUDE_DIR)
+	$(call symlink, $(CURDIR)/.claude/skills, $(CLAUDE_DIR)/skills)
 
 # Clean dotfiles explicitly tagged by this Makefile
 .PHONY: confirm-clean clean
